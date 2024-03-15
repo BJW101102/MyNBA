@@ -23,7 +23,7 @@ const db = new sqlite3.Database(path, (err) => {
     if (err) {
         console.error('Error opening database:', err.message);
     } else {
-        console.log('Connected to SQLite Database.');
+        console.log('Connected to SQLite Database.\n');
     }
 })
 
@@ -35,3 +35,15 @@ app.use((req, res, next) => {
 
 // Setting up routes
 app.use('/api', routes);
+
+
+// SQL Queries
+const {selectAllFromTable, deleteAllFromTable, deleteTable, createTable} = require('./controller/queries.js');
+const createUserTable = `
+CREATE TABLE userinfo ( 
+    userID INTEGER PRIMARY KEY, 
+    username TEXT(50) UNIQUE, 
+    password TEXT(50))`
+    ;
+
+
