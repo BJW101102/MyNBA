@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import '../css/App.css';
+import axios from 'axios';
 
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const url = 'http://localhost:5500/api/register'
 
   const handleUsername = (event) => {
     setUsername(event.target.value);
@@ -14,9 +16,15 @@ function Login() {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Submitting User Information");
+    try{
+      const response = await axios.post(url, {username: username, password: password});
+      console.log("Response:",response);
+    }
+    catch(error){
+      console.log("Error:", error.message);
+    }
   };
 
   return (
