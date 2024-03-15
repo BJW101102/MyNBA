@@ -1,0 +1,21 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "group5sql.database.windows.net",
+            "port": 3306,
+            "driver": "MySQL",
+            "database": "sports-application",
+            "username": "group5_admind",
+            "password": "MikeTheTiger2025!",
+            "name": "Sports_CSC4402"
+        }
+    ],
+    "dataworkspace.excludedProjects": [
+        "DB_Project/DB_Project.sqlproj"
+    ]
+}
