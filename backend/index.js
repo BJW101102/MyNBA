@@ -8,12 +8,14 @@ const sqlite3 = require('sqlite3').verbose();
 const app = express();
 const PORT = 5500;
 
-// Setting Up Sessions
+// Establishing Cors for HTTP Request to port 3000 
 app.use(cors({
     origin: 'http://localhost:3000',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
 }));
+
+// Establishing Session's MiddleWare
 app.use(session({
     secret: 'MikeTheTiger2025!',
     resave: false,
@@ -25,14 +27,13 @@ app.use(session({
     },
 }));
 
-// Setting Up Middleware
+// Setting Up Express Middleware
 app.use(express.json());
 
 // Establishing server via port: 5500
 app.listen(PORT, () => {
     console.log(`Server Started at ${PORT}`)
 });
-
 
 // Connecting to local database
 const path = "C:\\Users\\ender\\OneDrive\\Documents\\GitHub\\Sports-Application\\backend\\database\\sports-app.db"; // Change to local path
@@ -54,7 +55,7 @@ app.use((req, res, next) => {
 app.use('/api', routes);
 
 
-// SQL Queries
+// Basic SQL Queries
 const {selectAllFromTable, deleteAllFromTable, deleteTable, createTable} = require('./controller/queries.js');
 const createUserTable = `
 CREATE TABLE userinfo ( 
@@ -63,4 +64,5 @@ CREATE TABLE userinfo (
     password TEXT(50))`
     ;
 
+selectAllFromTable(db, "userinfo")
 

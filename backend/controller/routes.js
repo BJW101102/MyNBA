@@ -4,7 +4,9 @@ const bcrypt = require('bcrypt');
 
 module.exports = router;
 
-// Registering New User (SignUp)
+ /* ===== POST ===== */
+
+// Handles new user registration  
 router.post('/register', async (req, res) => {
     // Grabbing parameters from JSON object
     const username = req.body.username;
@@ -37,7 +39,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
-// Logging in valid User's
+// Handles valid user login  
 router.post('/login', async (req, res) =>{
     // Grabbing parameters from JSON object
     const username = req.body.username;
@@ -73,7 +75,9 @@ router.post('/login', async (req, res) =>{
     }
 })
 
-// Getting user data
+ /* ===== GET ===== */
+
+// Fetches for valid user's and their metadata
 router.get('/userdata', async (req, res) =>{
     try{
         // Requesting Session

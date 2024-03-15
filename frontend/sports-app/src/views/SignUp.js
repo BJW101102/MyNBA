@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../CSS/SignUp.css';
 import axios from 'axios';
+import swal from 'sweetalert2';
+
 
 function SignUp() {
   const [username, setUsername] = useState('');
@@ -8,27 +10,44 @@ function SignUp() {
 
   const api = axios.create({
     baseURL: 'http://localhost:5500/api/',
-    withCredentials: true,
+    withCredentials: true, // Needed for Sessions
   });
 
+  // Handler for setting Username
   const handleUsername = (event) => {
     setUsername(event.target.value);
   };
 
+  // Handler for setting Password
   const handlePassword = (event) => {
     setPassword(event.target.value);
   };
-
+    
+// User Registration Submission Handler
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await api.post('register', { username: username, password: password});
+      // Sending POST request to insert new user into database
+      const response = await api.post('register', { username: username, password: password });
+      // Successful Creation
       if (response.status === 200) {
-          window.location.href = 'http://localhost:3000/dashboard';
+        swal.fire({
+          title: "Awesome", // Alert for successful login
+          text: `Great to have you, ${username}!`,
+          icon: "success"
+        }).then(() => {
+          window.location.href = 'http://localhost:3000/dashboard'; // Redirecting to dashboard 
+        });
       }
       console.log("Response:", response);
     }
+    // Unsuccessful Creation
     catch (error) {
+      swal.fire({
+        title: "Oops", // Alert for unsuccessful login
+        text: `The username ${username} has been taken, try a new one!`,
+        icon: "error"
+      })
       console.log("Error:", error.message);
     }
   };
