@@ -2,14 +2,31 @@
 
 const express = require('express');
 const cors = require('cors');
+const session = require('express-session');
 const routes = require('./controller/routes')
 const sqlite3 = require('sqlite3').verbose();
 const app = express();
 const PORT = 5500;
 
+// Setting Up Sessions
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+}));
+app.use(session({
+    secret: 'MikeTheTiger2025!',
+    resave: false,
+    saveUninitialized: true,
+    cookie:{
+        secure: false,
+        httpOnly: true,
+        maxAge: 36000000,
+    },
+}));
+
 // Setting Up Middleware
 app.use(express.json());
-app.use(cors());
 
 // Establishing server via port: 5500
 app.listen(PORT, () => {

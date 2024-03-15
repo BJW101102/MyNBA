@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import '../CSS/Login.css';
 import axios from 'axios';
 
-
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const url = 'http://localhost:5500/api/register'
 
+    const api = axios.create({
+        baseURL: 'http://localhost:5500/api/',
+        withCredentials: true,
+      });
+    
     const handleUsername = (event) => {
         setUsername(event.target.value);
     };
@@ -19,8 +22,10 @@ function Login() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post(url, { username: username, password: password });
-            console.log("Response:", response);
+            const response = await api.post('login', {username: username, password: password });
+            if(response.status === 200){
+                window.location.href = 'http://localhost:3000/Dashboard';
+            }
         }
         catch (error) {
             console.log("Error:", error.message);

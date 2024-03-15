@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import '../CSS/SignUp.css';
 import axios from 'axios';
 
-
 function SignUp() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const url = 'http://localhost:5500/api/register'
+
+  const api = axios.create({
+    baseURL: 'http://localhost:5500/api/',
+    withCredentials: true,
+  });
 
   const handleUsername = (event) => {
     setUsername(event.target.value);
@@ -19,7 +22,10 @@ function SignUp() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(url, { username: username, password: password });
+      const response = await api.post('register', { username: username, password: password});
+      if (response.status === 200) {
+          window.location.href = 'http://localhost:3000/dashboard';
+      }
       console.log("Response:", response);
     }
     catch (error) {
@@ -30,7 +36,7 @@ function SignUp() {
   return (
     <div>
       <div className='header-container'>
-        <h1 style={{fontSize: "10vh"}}>Sign Up Page</h1>
+        <h1 style={{ fontSize: "10vh" }}>Sign Up Page</h1>
       </div>
       <div className='form-container'>
         <form onSubmit={handleSubmit}>

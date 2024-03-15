@@ -4,3 +4,7 @@ npm install react
 npm install express
 npm install bcrypt
 npm install react-router-dom
+npm install express-session
+npm install sweetalert2
+npm install --save-dev @babel/plugin-proposal-private-property-in-object
+
