@@ -1,12 +1,12 @@
-/* App.css */
 
+/*Begin: Chat-GPT Page CSS */
 body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* This ensures the content is centered vertically */
-  margin: 0; /* Remove default body margin */
-  background-color: #f0f0f0; /* Optional: Setting a background color */
+  height: 100vh; 
+  margin: 0; 
+  background-color: #efe7ba; 
 }
 
 .form-container {
@@ -52,3 +52,5 @@ body {
   margin-top: 20px;
   font-size: 16px;
 }
+/*End: Chat-GPT Page CSS */
+

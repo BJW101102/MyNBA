@@ -1,4 +1,6 @@
 npm install cors
 npm install axios
+npm install react
 npm install express
 npm install bcrypt
+npm install react-router-dom
