@@ -1,0 +1,15 @@
+Install the following extensions in the corresponding directories
+
+backend:
+npm install cors
+npm install axios
+npm install react
+npm install express
+npm install bcrypt
+npm install react-router-dom
+npm install express-session
+
+frontend/sports-app: 
+npm install sweetalert2
+npm install --save-dev @babel/plugin-proposal-private-property-in-object
+npm install bootstrap
