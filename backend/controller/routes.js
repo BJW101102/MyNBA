@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 module.exports = router;
 
- /* ===== POST ===== */
+/* ===== POST ===== */
 
 // Handles new user registration  
 router.post('/register', async (req, res) => {
@@ -27,7 +27,7 @@ router.post('/register', async (req, res) => {
                 req.session.user = {
                     username: username,
                     password: password,
-                    userID: this.lastID 
+                    userID: this.lastID
                 };
                 res.status(200).send("User registered successfully")
             }
@@ -35,62 +35,76 @@ router.post('/register', async (req, res) => {
     }
     catch (error) {
         console.error('Error Creating User:', error);
-        res.status(500).send({error: `Error Creating User ${username}`}); // Include the error message
+        res.status(500).send({ error: `Error Creating User ${username}` }); // Include the error message
     }
 });
 
 // Handles valid user login  
-router.post('/login', async (req, res) =>{
+router.post('/login', async (req, res) => {
     // Grabbing parameters from JSON object
     const username = req.body.username;
     const password = req.body.password;
     const db = req.db;
-    try{
+    try {
         // Selecting User for database
         const selectUser = `SELECT * FROM userinfo WHERE username = ?`
-        db.get(selectUser, [username], async (err, row) =>{
-            if(err){
+        db.get(selectUser, [username], async (err, row) => {
+            if (err) {
                 throw err;
             }
-            if (!row){
+            if (!row) {
                 return res.status(401).json({ message: 'Invalid username or password' });
             }
             // Checking for password match
             const isPasswordValid = await bcrypt.compare(password, row.password);
-            if (!isPasswordValid){
+            if (!isPasswordValid) {
                 return res.status(401).json({ message: 'Invalid username or password' });
             }
             // Establishing user session
             req.session.user = {
                 username: row.username,
                 password: row.password,
-                userID: row.id 
+                userID: row.id
             };
             console.log(`User ${username} has been logged in`);
-            res.status(200).json({ message: 'Login successful', user: { id: row.id, username: row.username }});
-        })        
+            res.status(200).json({ message: 'Login successful', user: { id: row.id, username: row.username } });
+        })
     }
-    catch(error){
-        res.status(500).send({error: `Error Logging in user ${username}`}); // Include the error message
+    catch (error) {
+        res.status(500).send({ error: `Error Logging in user ${username}` }); // Include the error message
     }
 })
 
- /* ===== GET ===== */
+// Handles logging out
+router.post('/logout', async (req, res) => {
+    console.log("Called")
+    req.session.destroy((err) => {
+        if (err) {
+            console.log("Error destroying session:", err);
+            return res.status(500).send('Internal Server Error');
+        } else {
+            res.status(200).json({ message: "Session Destroyed" });
+        }
+    })
+})
+
+
+/* ===== GET ===== */
 
 // Fetches for valid user's and their metadata
-router.get('/userdata', async (req, res) =>{
-    try{
+router.get('/userdata', async (req, res) => {
+    try {
         // Requesting Session
-        if(!req.session.user){
+        if (!req.session.user) {
             return res.status(401).json({ message: 'User not authenticated' });
         }
-        
+
         // Creating user reference
         user = req.session.user;
         console.log(`Fetched user ${user.username} with ID ${user.userID}`);
-        return res.status(200).json({username: user.username, id: user.userID });
+        return res.status(200).json({ username: user.username, id: user.userID });
     }
-    catch(error){
+    catch (error) {
         res.status(400).json({ message: error.message });
     }
 });

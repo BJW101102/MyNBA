@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import '../CSS/Login.css';
+import React, { useState, useEffect } from 'react';
+import '../CSS/Form.css';
 import axios from 'axios';
 import swal from 'sweetalert2';
 
@@ -12,6 +12,16 @@ function Login() {
         baseURL: 'http://localhost:5500/api/',
         withCredentials: true, //Needed for Sessions
     });
+
+    useEffect(() => {
+        // Apply styles to body element
+        document.body.style.display = 'flex';
+        document.body.style.justifyContent = 'center';
+        document.body.style.alignItems = 'center';
+        document.body.style.height = '100vh';
+        document.body.style.margin = 0;
+        document.body.style.backgroundColor = 'rgb(231, 236, 225)';
+    }, []);
 
     // Handler for setting Username
     const handleUsername = (event) => {

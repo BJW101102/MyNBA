@@ -1,13 +1,4 @@
 
-/*Begin: Chat-GPT Page CSS */
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; 
-  margin: 0; 
-  background-color: #efe7ba; 
-}
 
 .form-container {
   max-width: 400px;
@@ -52,5 +43,17 @@ body {
   margin-top: 20px;
   font-size: 16px;
 }
+
+
+#submit{
+  margin-left: 7vh;
+  margin-right: 6vh;
+}
 /*End: Chat-GPT Page CSS */
+
+
+.col-xl-3,
+.col-xl-9 {
+    border: 5px solid black; /* Set border to black */
+}
 

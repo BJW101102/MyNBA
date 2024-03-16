@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../CSS/SignUp.css';
+import '../CSS/Form.css';
 import axios from 'axios';
 import swal from 'sweetalert2';
 
