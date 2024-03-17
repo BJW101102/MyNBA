@@ -35,3 +35,29 @@
 .nav-button-container{
   margin-left: 5vh;
 }
+
+
+.side-bar{
+  background-color: rgb(228, 220, 220);
+  height: 500px;
+}
+
+.teams{
+  background-color: rgb(118, 109, 109);
+}
+.img-border{
+  border: 1px solid black;
+}
+.scrollable{
+   max-height: 150px;
+   
+    overflow:scroll;
+
+}
+.team{
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.team-font-size{
+  font-size: .5rem;
+}
