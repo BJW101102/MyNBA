@@ -1,19 +1,29 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/esm/Row';
 
-function Navigation() {
+function Navigation({ username, api }) {
 
-return (
-    <Navbar expand="sm" className="bg-body-tertiary">
-      <Container fluid>
-        <Navbar.Brand href="#">Hello Test User</Navbar.Brand>
+  const handleLogOut = async (event) => {
+    try {
+      const response = await api.post('logout')
+      if (response.status === 200) {
+        window.location.href = 'http://localhost:3000';
+      }
+    }
+    catch (error) {
+      console.log("Error:", error.message);
+    }
+  };
+
+  return (
+    <Row style = {{border: "1px solid black"}}>
+      <Navbar expand="sm" className="bg-body-tertiary">
+        <Navbar.Brand href="#"> Hello, {username}</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -22,9 +32,7 @@ return (
             navbarScroll
           >
             <Nav.Link href="#action1">Sports</Nav.Link>
-            <Nav.Link href="#action2">Logout</Nav.Link>
-            
-            
+            <Nav.Link href="#action2" onClick={handleLogOut}>Logout</Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Form.Control
@@ -36,9 +44,10 @@ return (
             <Button variant="outline-success">Search</Button>
           </Form>
         </Navbar.Collapse>
-      </Container>
-    </Navbar>
-);
+      </Navbar>
+    </Row>
+
+  );
 };
 
 export default Navigation;

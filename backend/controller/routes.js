@@ -64,7 +64,7 @@ router.post('/login', async (req, res) => {
             req.session.user = {
                 username: row.username,
                 password: row.password,
-                userID: row.id
+                userID: row.userID
             };
             console.log(`User ${username} has been logged in`);
             res.status(200).json({ message: 'Login successful', user: { id: row.id, username: row.username } });
@@ -102,7 +102,7 @@ router.get('/userdata', async (req, res) => {
         // Creating user reference
         user = req.session.user;
         console.log(`Fetched user ${user.username} with ID ${user.userID}`);
-        return res.status(200).json({ username: user.username, id: user.userID });
+        return res.status(200).json({ username: user.username, userID: user.userID });
     }
     catch (error) {
         res.status(400).json({ message: error.message });
