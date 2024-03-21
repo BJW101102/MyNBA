@@ -1,11 +1,43 @@
+/* Base styles */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Lato', sans-serif; /* Apply Lato font */
+  background: linear-gradient(to right, #e3f2fd 10%, #fff 30%, #fff 70%, #e3f2fd 90%); /* Gradient background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+/* Container for the entire page */
+.page-container {
+  text-align: center; /* Center aligns text elements */
+  width: 100%; /* Full width */
+}
 
+.header-container {
+  margin-bottom: 20px; /* Add space below the header */
+}
+
+.header-container h1 {
+  font-weight: 700; /* Lato bold */
+  margin: 0; /* Reset margin */
+  padding: 20px 0; /* Padding at the top and bottom */
+  background-color: #fff; /* White background for the header */
+  display: inline-block; /* Inline block for the h1 element */
+  width: auto; /* Width as per content */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Styles for the form container */
 .form-container {
   max-width: 400px;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: auto; /* Auto margins for horizontal centering */
 }
 
 .form-container form {
@@ -33,6 +65,7 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin: 10px 0; /* Add margin to top and bottom for spacing */
 }
 
 .form-container button:hover {
@@ -43,17 +76,3 @@
   margin-top: 20px;
   font-size: 16px;
 }
-
-
-#submit{
-  margin-left: 7vh;
-  margin-right: 6vh;
-}
-/*End: Chat-GPT Page CSS */
-
-
-.col-xl-3,
-.col-xl-9 {
-    border: 5px solid black; /* Set border to black */
-}
-
