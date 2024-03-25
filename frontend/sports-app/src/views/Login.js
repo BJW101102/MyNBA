@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import '../CSS/Form.css';
+import '../CSS/Form.css'; // Make sure this file contains the new styles from the provided CSS
 import axios from 'axios';
 import swal from 'sweetalert2';
 
 function Login() {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const api = axios.create({
@@ -12,15 +12,15 @@ function Login() {
         withCredentials: true,
     });
 
-    const handleUsername = (event) => setUsername(event.target.value);
+    const handleEmail = (event) => setEmail(event.target.value);
     const handlePassword = (event) => setPassword(event.target.value);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await api.post('login', { username, password });
+            const response = await api.post('login', { email, password });
             if (response.status === 200) {
-                swal.fire("Awesome", `Great to see you again, ${username}!`, "success")
+                swal.fire("Awesome", "Great to see you again!", "success")
                     .then(() => window.location.href = '/dashboard');
             }
         } catch (error) {
@@ -28,38 +28,32 @@ function Login() {
         }
     };
 
-    const handleRedirect = () => window.location.href = '/signup';
-
     return (
-        <div className="page-container">
-            <div className='header-container'>
-                <h1>Welcome!</h1> {/* Updated text */}
-            </div>
-            <div className='form-container'>
+        <div className="container" id="container">
+            <div className="form-container sign-in-container">
                 <form onSubmit={handleSubmit}>
-                    <div>
-                        <label htmlFor="username">Username:</label>
-                        <input
-                            type="text"
-                            id="username"
-                            value={username}
-                            onChange={handleUsername}
-                        />
+                    <h1>Sign in</h1>
+                    <div className="social-container">
+                        {/* Implement social login functionality here or remove */}
                     </div>
-                    <div>
-                        <label htmlFor="password">Password:</label>
-                        <input
-                            type="password"
-                            id="password"
-                            value={password}
-                            onChange={handlePassword}
-                        />
-                    </div>
-                    <button id="submit" type="submit">Submit</button>
-                    <button type="button" onClick={handleRedirect}>New User?</button>
+                    <span>or use your account</span>
+                    <input 
+                        type="email" 
+                        placeholder="Email" 
+                        value={email}
+                        onChange={handleEmail} 
+                    />
+                    <input 
+                        type="password" 
+                        placeholder="Password" 
+                        value={password}
+                        onChange={handlePassword}
+                    />
+                    <a href="#">Forgot your password?</a>
+                    <button>Sign In</button>
                 </form>
-                <p>Display_Username: {username}<br />Display_Password: {password}</p>
             </div>
+            {/* Overlay and other elements, adjust as needed */}
         </div>
     );
 }
