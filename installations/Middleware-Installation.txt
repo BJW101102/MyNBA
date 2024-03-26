@@ -13,3 +13,4 @@ frontend/sports-app:
 npm install sweetalert2
 npm install --save-dev @babel/plugin-proposal-private-property-in-object
 npm install bootstrap
+npm install react-bootstrap
