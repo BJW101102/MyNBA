@@ -7,6 +7,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Image from 'react-bootstrap/Image';
 
 function Team({logo}) {
+    //NOTE: I put all the styles inline since it may be easier to edit and see what is going on, feel free to export it to the CSS sheet. 
     return (
         <div>
             <Card className="team m-2 p-2" style={{ border: "2px solid white" }} >
