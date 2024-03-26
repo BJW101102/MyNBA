@@ -1,0 +1,23 @@
+get,parameters.team,parameters.season,results,response.id,response.firstname,response.lastname,response.birth.date,response.birth.country,response.nba.start,response.nba.pro,response.height.feets,response.height.inches,response.height.meters,response.weight.pounds,response.weight.kilograms,response.college,response.affiliation,response.leagues.standard.jersey,response.leagues.standard.active,response.leagues.standard.pos,response.leagues.africa.jersey,response.leagues.africa.active,response.leagues.africa.pos,response.leagues.vegas.jersey,response.leagues.vegas.active,response.leagues.vegas.pos,response.leagues.utah.jersey,response.leagues.utah.active,response.leagues.utah.pos,response.leagues.sacramento.jersey,response.leagues.sacramento.active,response.leagues.sacramento.pos
+players/,40.0,2023.0,22.0,152,Kris,Dunn,1994-03-18,USA,2016,0,,,,,,Providence,Providence/USA,18.0,False,,,,,,,,,,,,,
+,,,,830,Lauri,Markkanen,1997-05-22,Finland,2017,4,6.0,11.0,2.11,240.0,108.9,Arizona,Arizona/Finland,23.0,True,F-C,,,,,,,,,,,,
+,,,,761,John,Collins,1997-09-23,USA,2017,4,6.0,9.0,2.06,226.0,102.5,Wake Forest,Wake Forest/USA,20.0,True,F-C,20.0,1.0,F-C,20.0,1.0,F-C,20.0,1.0,F-C,,,
+,,,,1021,Collin,Sexton,1999-01-04,USA,2018,3,6.0,1.0,1.85,190.0,86.2,Alabama,Alabama/USA,2.0,True,G,,,,2.0,1.0,G,,,,,,
+,,,,1874,Romeo,Langford,1999-10-25,USA,2019,2,6.0,5.0,1.96,216.0,98.0,Indiana,Indiana/USA,35.0,True,G-F,,,,9.0,1.0,G,,,,,,
+,,,,1867,Talen,Horton-Tucker,2000-11-25,USA,2019,2,6.0,4.0,1.93,234.0,106.1,Iowa State,Iowa State/USA,,True,G,,,,5.0,1.0,G,,,,5.0,1.0,G
+,,,,1891,Luka,Samanic,,,0,0,,,,,,,,99.0,False,,,,,19.0,1.0,F,19.0,1.0,F,,,
+,,,,2611,Kira,Lewis Jr.,2001-04-06,USA,2020,1,6.0,1.0,1.85,170.0,77.1,Alabama,Alabama/USA,13.0,True,G,,,,13.0,1.0,G,,,,,,
+,,,,2785,Omer,Yurtseven,1998-06-19,Turkey,2021,0,6.0,11.0,2.11,275.0,124.7,Georgetown,Georgetown/Turkey,77.0,True,C,,,,77.0,1.0,C,,,,77.0,1.0,C
+,,,,2799,Josh,Christopher,2001-12-08,USA,2021,0,6.0,3.0,1.9,215.0,97.5,Arizona State,Arizona State/USA,9.0,True,G,,,,9.0,1.0,G,,,,,,
+,,,,3411,Ochai,Agbaji,,,0,0,,,,,,,,30.0,True,G,,,,30.0,1.0,G,,,,,,
+,,,,3454,Johnny,Juzang,,,0,0,,,,,,,,33.0,True,G,,,,33.0,1.0,G,33.0,1.0,G,,,
+,,,,2842,Jason,Preston,1999-08-10,USA,0,0,6.0,3.0,1.9,181.0,82.1,Ohio,Ohio/USA,17.0,True,G,,,,17.0,1.0,G,,,,,,
+,,,,3358,Micah,Potter,1998-04-06,USA,2021,0,,,,,,Wisconsin,Wisconsin/USA,20.0,True,C,,,,20.0,1.0,F,,,,,,
+,,,,3457,Walker,Kessler,,,0,0,,,,,,,,24.0,True,C,,,,,,,,,,,,
+,,,,3438,Simone,Fontecchio,,,0,0,,,,,,,,16.0,True,F,,,,,,,,,,,,
+,,,,4029,Keyonte,George,,,0,0,6.0,,,185.0,,Baylor,,3.0,True,G,,,,,,,,,,,,
+,,,,4031,Taylor,Hendricks,,,0,0,6.0,,,210.0,,UCF,,,True,F,,,,,,,,,,,,
+,,,,4032,Taevion,Kinsey,,,0,0,6.0,,,190.0,,Marshall,,22.0,True,G,,,,,,,,,,,,
+,,,,4034,Brice,Sensabaugh,,,0,0,6.0,,,235.0,,Ohio State,,8.0,True,F,,,,,,,,,,,,
+,,,,404,Kelly,Olynyk,1991-04-19,Canada,2013,8,6.0,11.0,2.11,240.0,108.9,Gonzaga,Gonzaga/Canada,41.0,True,F-C,,,,,,,,,,,,
+,,,,109,Jordan,Clarkson,1992-06-07,USA,2014,7,6.0,4.0,1.93,194.0,88.0,Missouri,Missouri/USA,,True,G,,,,,,,,,,,,

@@ -1,0 +1,21 @@
+get,parameters.team,parameters.season,results,response.id,response.firstname,response.lastname,response.birth.date,response.birth.country,response.nba.start,response.nba.pro,response.height.feets,response.height.inches,response.height.meters,response.weight.pounds,response.weight.kilograms,response.college,response.affiliation,response.leagues.standard.jersey,response.leagues.standard.active,response.leagues.standard.pos,response.leagues.vegas.jersey,response.leagues.vegas.active,response.leagues.vegas.pos,response.leagues.utah.jersey,response.leagues.utah.active,response.leagues.utah.pos
+players/,31.0,2023.0,20.0,854,Cedi,Osman,1995-04-08,Turkey,2017,4,6.0,7.0,2.01,230.0,104.3,Anadolu Efes,Anadolu Efes/Turkey,16,True,F,16.0,1.0,F,,,
+,,,,762,Zach,Collins,1997-11-19,USA,2017,3,6.0,11.0,2.11,250.0,113.4,Gonzaga,Gonzaga/USA,23,True,F-C,33.0,1.0,C,,,
+,,,,973,Devonte',Graham,1995-02-22,USA,2018,3,6.0,1.0,1.85,195.0,88.5,Kansas,Kansas/USA,4,True,G,4.0,1.0,G,,,
+,,,,2580,Mamadi,Diakite,1997-01-21,Guinea,2020,0,,,,,,Virginia,Virginia/Guinea,12,True,F,25.0,1.0,F,,,
+,,,,1872,Keldon,Johnson,1999-10-11,USA,2019,2,6.0,6.0,1.98,220.0,99.8,Kentucky,Kentucky/USA,3,True,F-G,3.0,1.0,G-F,3.0,1.0,G-F
+,,,,2790,Charles,Bassey,2000-10-28,Nigeria,2021,0,6.0,9.0,2.06,230.0,104.3,Western Kentucky,Western Kentucky/Nigeria,23,True,C-F,23.0,1.0,C,23.0,1.0,C
+,,,,2661,Devin,Vassell,2000-08-23,USA,2020,1,6.0,5.0,1.96,200.0,90.7,Florida State,Florida State/USA,24,True,G-F,24.0,1.0,G-F,24.0,1.0,G-F
+,,,,2606,Tre,Jones,2000-01-08,USA,2020,1,6.0,1.0,1.85,185.0,83.9,Duke,Duke/USA,33,True,G,33.0,1.0,G,33.0,1.0,G
+,,,,2830,Sandro,Mamukelashvili,1999-05-23,Georgia,2021,0,6.0,9.0,2.06,240.0,108.9,Seton Hall,Seton Hall/Georgia,54,True,F-C,54.0,1.0,F,,,
+,,,,3425,Julian,Champagnie,,,0,0,,,,,,,,55,True,F,5.0,1.0,G-F,5.0,1.0,G-F
+,,,,3419,Malaki,Branham,,,0,0,,,,,,,,22,True,F,22.0,1.0,G,,,
+,,,,3499,Blake,Wesley,,,0,0,,,,,,,,14,True,G,14.0,1.0,G,,,
+,,,,3490,Jeremy,Sochan,,,0,0,,,,,,,,10,True,F,10.0,1.0,F,,,
+,,,,3415,Dominick,Barlow,,,0,0,,,,,,,,26,True,F,26.0,1.0,F,,,
+,,,,4023,Charles,Bediako,,,0,0,6.0,,,220.0,,Alabama,,27,True,C,,,,,,
+,,,,4024,Sidy,Cissoko,,,0,0,6.0,,,225.0,,,,25,True,G,,,,,,
+,,,,4025,Sir'Jabari,Rice,,,0,0,6.0,,,170.0,,Texas,,11,True,G,,,,,,
+,,,,4026,Victor,Wembanyama,,,0,0,7.0,,,225.0,,,,1,True,C,,,,,,
+,,,,739,Khem,Birch,1992-09-28,Canada,2017,4,6.0,9.0,2.06,233.0,105.7,UNLV,UNLV/Canada,24,True,C,24.0,1.0,C,,,
+,,,,351,Doug,McDermott,1992-01-03,USA,2014,7,6.0,7.0,2.01,225.0,102.1,Creighton,Creighton/USA,17,True,F,,,,,,

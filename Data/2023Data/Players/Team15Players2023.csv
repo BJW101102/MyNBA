@@ -1,0 +1,23 @@
+get,parameters.team,parameters.season,results,response.id,response.firstname,response.lastname,response.birth.date,response.birth.country,response.nba.start,response.nba.pro,response.height.feets,response.height.inches,response.height.meters,response.weight.pounds,response.weight.kilograms,response.college,response.affiliation,response.leagues.standard.jersey,response.leagues.standard.active,response.leagues.standard.pos,response.leagues.africa.jersey,response.leagues.africa.active,response.leagues.africa.pos,response.leagues.vegas.jersey,response.leagues.vegas.active,response.leagues.vegas.pos
+players/,15.0,2023.0,22.0,522,Myles,Turner,1996-03-24,USA,2015,6,6.0,11.0,2.11,250.0,113.4,Texas,Texas/USA,33.0,True,C-F,,,,,,
+,,,,236,Buddy,Hield,1992-12-17,Bahamas,2016,5,6.0,4.0,1.93,220.0,99.8,Oklahoma,Oklahoma/Bahamas,24.0,True,G,,,,,,
+,,,,479,Pascal,Siakam,1994-04-02,Cameroon,2016,5,6.0,8.0,2.03,230.0,104.3,New Mexico State,New Mexico State/Cameroon,43.0,True,F,43.0,1.0,F,,,
+,,,,886,Daniel,Theis,1992-04-04,Germany,2017,4,6.0,9.0,2.06,245.0,111.1,Brose Bamberg,Brose Bamberg/Germany,27.0,True,F-C,,,,,,
+,,,,944,Bruce,Brown,1996-08-15,USA,2018,3,6.0,4.0,1.93,202.0,91.6,Miami,Miami/USA,11.0,True,G-F,,,,6.0,1.0,G
+,,,,3476,Andrew,Nembhard,,,0,0,,,,,,,,2.0,True,G-F,,,,2.0,1.0,G
+,,,,2628,Jordan,Nwora,1998-09-09,USA,2020,1,6.0,8.0,2.03,225.0,102.1,Louisville,Louisville/USA,13.0,True,F,,,,13.0,1.0,F
+,,,,2658,Obi,Toppin,1998-03-04,USA,2020,1,6.0,9.0,2.06,220.0,99.8,Dayton,Dayton/USA,1.0,True,F,,,,1.0,1.0,F
+,,,,2595,Tyrese,Haliburton,2000-02-29,USA,2020,1,6.0,5.0,1.96,185.0,83.9,Iowa State,Iowa State/USA,,True,G,,,,,,
+,,,,2626,Aaron,Nesmith,1999-10-16,USA,2020,1,6.0,5.0,1.96,215.0,97.5,Vanderbilt,Vanderbilt/USA,23.0,True,G-F,,,,23.0,1.0,G
+,,,,2644,Jalen,Smith,2000-03-16,USA,2020,1,6.0,10.0,2.08,215.0,97.5,Maryland,Maryland/USA,25.0,True,F-C,,,,10.0,1.0,F
+,,,,2817,Isaiah,Jackson,2002-01-10,USA,2021,0,6.0,10.0,2.08,205.0,93.0,Kentucky,Kentucky/USA,22.0,True,F,,,,22.0,1.0,F
+,,,,3466,Bennedict,Mathurin,,,0,0,,,,,,,,,True,G-F,,,,,1.0,G
+,,,,3423,Kendall,Brown,,,0,0,,,,,,,,10.0,True,G,,,,10.0,1.0,G-F
+,,,,3452,Quenton,Jackson,,,0,0,,,,,,,,29.0,True,G,,,,3.0,1.0,G-F
+,,,,3979,Ben,Sheppard,,,0,0,6.0,,,190.0,,Belmont,,26.0,True,G,,,,,,
+,,,,3980,Oscar,Tshiebwe,,,0,0,6.0,,,260.0,,Kentucky,,44.0,True,C,,,,,,
+,,,,3981,Jarace,Walker,,,0,0,6.0,,,240.0,,Houston,,5.0,True,F,,,,,,
+,,,,3982,Isaiah,Wong,,,0,0,6.0,,,184.0,,Miami,,21.0,True,G,,,,,,
+,,,,274,James,Johnson,1987-02-20,USA,2009,0,,,,,,Wake Forest,Wake Forest/USA,16.0,True,F,,,,,,
+,,,,351,Doug,McDermott,1992-01-03,USA,2014,7,6.0,7.0,2.01,225.0,102.1,Creighton,Creighton/USA,17.0,True,F,,,,,,
+,,,,348,T.J.,McConnell,1992-03-25,USA,2015,6,6.0,1.0,1.85,190.0,86.2,Arizona,Arizona/USA,9.0,True,G,,,,,,
