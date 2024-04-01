@@ -4,7 +4,7 @@ import axios from 'axios';
 import swal from 'sweetalert2';
 
 function AuthForm() {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isSignUp, setIsSignUp] = useState(false); // State to toggle between forms
 
@@ -13,14 +13,14 @@ function AuthForm() {
         withCredentials: true,
     });
 
-    const handleEmail = (event) => setEmail(event.target.value);
+    const handleUsername = (event) => setUsername(event.target.value);
     const handlePassword = (event) => setPassword(event.target.value);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         const path = isSignUp ? 'register' : 'login';
         try {
-            const response = await api.post(path, { email, password });
+            const response = await api.post(path, { username, password });
             if (response.status === 200) {
                 const message = isSignUp ? "Welcome aboard!" : "Great to see you again!";
                 swal.fire("Awesome", message, "success")
@@ -38,10 +38,10 @@ function AuthForm() {
                     <h1>Create Account</h1>
                     <span>or use your email for registration</span>
                     <input 
-                        type="email" 
-                        placeholder="Email" 
-                        value={email}
-                        onChange={handleEmail} 
+                        type="username" 
+                        placeholder="Username" 
+                        value={username}
+                        onChange={handleUsername} 
                     />
                     <input 
                         type="password" 
@@ -57,10 +57,10 @@ function AuthForm() {
                     <h1>Sign in</h1>
                     <span>or use your account</span>
                     <input 
-                        type="email" 
-                        placeholder="Email" 
-                        value={email}
-                        onChange={handleEmail} 
+                        type="username" 
+                        placeholder="Username" 
+                        value={username}
+                        onChange={handleUsername} 
                     />
                     <input 
                         type="password" 

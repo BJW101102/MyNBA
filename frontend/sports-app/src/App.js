@@ -1,6 +1,4 @@
 import React from 'react';
-import SignUp from './views/SignUp';
-import Login from './views/Login';
 import AuthForm from './views/AuthForm';
 import Dashboard from './views/Dashboard';
 

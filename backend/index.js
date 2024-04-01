@@ -36,7 +36,7 @@ app.listen(PORT, () => {
 });
 
 // Connecting to local database
-const path = "C:\\Users\\ender\\OneDrive\\Documents\\GitHub\\Sports-Application\\backend\\database\\sports-app.db"; // Change to local path
+const path = "C:\\Users\\Brandon Walton\\Documents\\Sports-Application\\backend\\database\\sports-app.db"; // Change to local path
 const db = new sqlite3.Database(path, (err) => {
     if (err) {
         console.error('Error opening database:', err.message);
