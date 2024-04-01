@@ -1,0 +1,21 @@
+get,parameters.team,parameters.season,results,response.id,response.firstname,response.lastname,response.birth.date,response.birth.country,response.nba.start,response.nba.pro,response.height.feets,response.height.inches,response.height.meters,response.weight.pounds,response.weight.kilograms,response.college,response.affiliation,response.leagues.standard.jersey,response.leagues.standard.active,response.leagues.standard.pos,response.leagues.vegas.jersey,response.leagues.vegas.active,response.leagues.vegas.pos,response.leagues.utah.jersey,response.leagues.utah.active,response.leagues.utah.pos
+players/,1.0,2023.0,20.0,382,Dejounte,Murray,1996-09-19,USA,2016,4,6.0,4.0,1.93,180.0,81.6,Washington,Washington/USA,5.0,True,G,,,,,,
+,,,,1858,Bruno,Fernando,1998-08-15,Angola,2019,2,6.0,9.0,2.06,240.0,108.9,Maryland,Maryland/Angola,20.0,True,F-C,55.0,1.0,F-C,,,
+,,,,1046,Trae,Young,1998-09-19,USA,2018,3,6.0,1.0,1.85,164.0,74.4,Oklahoma,Oklahoma/USA,11.0,True,G,11.0,1.0,G,11.0,1.0,G
+,,,,1868,De'Andre,Hunter,1997-12-02,USA,2019,2,6.0,8.0,2.03,221.0,100.2,Virginia,Virginia/USA,12.0,True,F-G,12.0,1.0,F,,,
+,,,,1903,Dylan,Windler,1996-09-22,USA,2020,1,6.0,6.0,1.98,196.0,88.9,Belmont,Belmont/USA,9.0,True,G-F,9.0,1.0,G-F,9.0,1.0,F
+,,,,2327,Garrison,Mathews,,,0,0,,,,,,,,25.0,True,G,24.0,1.0,F,,,
+,,,,2629,Onyeka,Okongwu,2000-12-11,USA,2020,1,6.0,8.0,2.03,240.0,108.9,Southern California,Southern California/USA,17.0,True,F-C,,,,,,
+,,,,2569,Saddiq,Bey,1999-04-09,USA,2020,1,6.0,7.0,2.01,215.0,97.5,Villanova,Villanova/USA,41.0,True,F,41.0,1.0,F,,,
+,,,,2589,Trent,Forrest,1998-06-12,USA,2020,1,6.0,4.0,1.93,210.0,95.3,Florida State,Florida State/USA,3.0,True,G,3.0,1.0,G,3.0,1.0,G
+,,,,2608,Vit,Krejci,2000-06-19,Czech Republic,2021,0,6.0,8.0,2.03,195.0,88.5,Zaragoza,Zaragoza/Czech Republic,27.0,True,G,27.0,1.0,G,27.0,1.0,G
+,,,,2819,Jalen,Johnson,2001-12-18,USA,2021,0,6.0,8.0,2.03,219.0,99.3,Duke,Duke/USA,1.0,True,F,1.0,1.0,F,,,
+,,,,3444,AJ,Griffin,,,0,0,,,,,,,,14.0,True,F,14.0,1.0,F,,,
+,,,,3938,Kobe,Bufkin,,,0,0,6.0,,,195.0,,Michigan,,,True,G,,,,,,
+,,,,3939,Mouhamed,Gueye,,,0,0,6.0,,,210.0,,Washington State,,,True,F,,,,,,
+,,,,3941,Seth,Lundy,,,0,0,6.0,,,220.0,,Penn State,,,True,G,,,,,,
+,,,,3942,Miles,Norris,,,0,0,6.0,,,220.0,,UC Santa Barbara,,,True,F,,,,,,
+,,,,365,Patty,Mills,1988-08-11,Australia,2009,12,6.0,0.0,1.83,180.0,81.6,St. Mary's,St. Mary's/Australia,8.0,True,G,,,,,,
+,,,,341,Wesley,Matthews,1986-10-14,USA,2009,12,6.0,4.0,1.93,220.0,99.8,Marquette,Marquette/USA,23.0,True,G,,,,,,
+,,,,92,Clint,Capela,1994-05-18,Switzerland,2014,7,6.0,10.0,2.08,256.0,116.1,Elan Chalon,Elan Chalon/Switzerland,15.0,True,C,,,,,,
+,,,,743,Bogdan,Bogdanovic,1992-08-18,Serbia,2017,4,6.0,6.0,1.98,225.0,102.1,Fenerbahce,Fenerbahce/Serbia,13.0,True,G,,,,,,

@@ -16,7 +16,7 @@ router.post('/register', async (req, res) => {
     // Registering User and Hashing password
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
-        const insertNewUser = 'Insert INTO userinfo (username,password) VALUES (?, ?)' // SQL Query
+        const insertNewUser = 'Insert INTO UserInfo (username,password) VALUES (?, ?)' // SQL Query
         db.run(insertNewUser, [username, hashedPassword], function (err) { //Running Query
             if (err) {
                 console.error("Error inserting user:", err.message);
@@ -47,7 +47,7 @@ router.post('/login', async (req, res) => {
     const db = req.db;
     try {
         // Selecting User for database
-        const selectUser = `SELECT * FROM userinfo WHERE username = ?`
+        const selectUser = `SELECT * FROM UserInfo WHERE username = ?`
         db.get(selectUser, [username], async (err, row) => {
             if (err) {
                 throw err;

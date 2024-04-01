@@ -1,0 +1,22 @@
+get,parameters.team,parameters.season,results,response.id,response.firstname,response.lastname,response.birth.date,response.birth.country,response.nba.start,response.nba.pro,response.height.feets,response.height.inches,response.height.meters,response.weight.pounds,response.weight.kilograms,response.college,response.affiliation,response.leagues.standard.jersey,response.leagues.standard.active,response.leagues.standard.pos,response.leagues.sacramento.jersey,response.leagues.sacramento.active,response.leagues.sacramento.pos,response.leagues.vegas.jersey,response.leagues.vegas.active,response.leagues.vegas.pos,response.leagues.utah.jersey,response.leagues.utah.active,response.leagues.utah.pos
+players/,7.0,2023.0,21.0,281,Damian,Jones,1995-06-30,USA,2016,5,6.0,11.0,2.11,245.0,111.1,Vanderbilt,Vanderbilt/USA,30.0,True,C,25.0,1.0,C,15.0,1.0,C,,,
+,,,,317,Caris,LeVert,1994-08-25,USA,2016,5,6.0,6.0,1.98,205.0,93.0,Michigan,Michigan/USA,3.0,True,G,,,,22.0,1.0,G-F,,,
+,,,,391,Georges,Niang,1993-06-17,USA,2016,5,6.0,7.0,2.01,230.0,104.3,Iowa State,Iowa State/USA,20.0,True,F,,,,31.0,1.0,F,31.0,1.0,F
+,,,,840,Donovan,Mitchell,1996-09-07,USA,2017,4,6.0,1.0,1.85,215.0,97.5,Louisville,Louisville/USA,45.0,True,G,,,,,,,,,
+,,,,727,Jarrett,Allen,1998-04-21,USA,2017,4,6.0,10.0,2.08,243.0,110.2,Texas,Texas/USA,31.0,True,C,,,,31.0,1.0,C,,,
+,,,,1025,Zhaire,Smith,1999-06-04,USA,2018,2,6.0,3.0,1.9,205.0,93.0,Texas Tech,Texas Tech/USA,5.0,True,G,,,,8.0,1.0,G-F,,,
+,,,,2051,Max,Strus,1996-03-28,USA,2019,2,6.0,5.0,1.96,220.0,99.8,DePaul,DePaul/USA,31.0,True,G-F,31.0,1.0,G-F,31.0,1.0,G-F,,,
+,,,,1860,Darius,Garland,2000-01-26,USA,2019,2,6.0,1.0,1.85,192.0,87.1,Vanderbilt,Vanderbilt/USA,10.0,True,G,,,,10.0,1.0,G,10.0,1.0,G
+,,,,1870,Ty,Jerome,1997-07-08,USA,2019,2,6.0,5.0,1.96,195.0,88.5,Virginia,Virginia/USA,16.0,True,G-F,,,,,,,,,
+,,,,2392,Dean,Wade,1996-11-20,USA,2019,2,6.0,9.0,2.06,228.0,103.4,Kansas State,Kansas State/USA,32.0,True,F-C,,,,,,,,,
+,,,,2630,Isaac,Okoro,2001-01-26,USA,2020,1,6.0,5.0,1.96,225.0,102.1,Auburn,Auburn/USA,35.0,True,F-G,,,,35.0,1.0,G,,,
+,,,,2623,Sam,Merrill,1996-05-15,USA,2020,0,,,,,,Utah State,Utah State/USA,20.0,True,G,,,,25.0,1.0,G,,,
+,,,,2800,Sharife,Cooper,2001-06-11,USA,2021,0,6.0,1.0,1.85,176.0,79.8,Auburn,Auburn/USA,2.0,True,G,,,,2.0,1.0,G,,,
+,,,,2835,Evan,Mobley,2001-06-18,USA,2021,0,6.0,11.0,2.11,215.0,97.5,Southern California,Southern California/USA,4.0,True,C,,,,4.0,1.0,F-C,,,
+,,,,3472,Isaiah,Mobley,,,0,0,,,,,,,,15.0,True,F,,,,15.0,1.0,F,,,
+,,,,3956,Emoni,Bates,,,0,0,6.0,,,170.0,,Eastern Michigan,,21.0,True,F,,,,,,,,,
+,,,,3957,Pete,Nance,,,0,0,6.0,,,230.0,,North Carolina,,48.0,True,F,,,,,,,,,
+,,,,3958,Justin,Powell,,,0,0,6.0,,,197.0,,Washington State,,,True,G,,,,,,,,,
+,,,,4043,Craig Jr.,Porter,,,0,0,6.0,,,186.0,,Wichita State,,40.0,True,G,,,,,,,,,
+,,,,515,Tristan,Thompson,1991-03-13,Canada,2011,10,6.0,9.0,2.06,254.0,115.2,Texas-Austin,Texas-Austin/Canada,3.0,True,C-F,,,,,,,,,
+,,,,373,Marcus,Morris Sr.,1989-09-02,USA,2011,10,6.0,8.0,2.03,218.0,98.9,Kansas,Kansas/USA,8.0,True,F,,,,,,,,,

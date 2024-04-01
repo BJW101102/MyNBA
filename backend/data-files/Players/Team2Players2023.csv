@@ -1,0 +1,22 @@
+get,parameters.team,parameters.season,results,response.id,response.firstname,response.lastname,response.birth.date,response.birth.country,response.nba.start,response.nba.pro,response.height.feets,response.height.inches,response.height.meters,response.weight.pounds,response.weight.kilograms,response.college,response.affiliation,response.leagues.standard.jersey,response.leagues.standard.active,response.leagues.standard.pos,response.leagues.vegas.jersey,response.leagues.vegas.active,response.leagues.vegas.pos,response.leagues.utah.jersey,response.leagues.utah.active,response.leagues.utah.pos,response.leagues.sacramento.jersey,response.leagues.sacramento.active,response.leagues.sacramento.pos
+players/,2.0,2023.0,21.0,75,Jaylen,Brown,1996-10-24,USA,2016,5,6.0,6.0,1.98,223.0,101.2,California,California/USA,7.0,True,G-F,,,,,,,,,
+,,,,882,Jayson,Tatum,1998-03-03,USA,2017,4,6.0,8.0,2.03,210.0,95.3,Duke,Duke/USA,,True,F-G,,,,,,,,,
+,,,,897,Derrick,White,1994-07-02,USA,2017,4,6.0,4.0,1.93,190.0,86.2,Colorado,Colorado/USA,9.0,True,G,4.0,1.0,G,4.0,1.0,G,,,
+,,,,819,Luke,Kornet,1995-07-15,USA,2017,4,7.0,2.0,2.18,250.0,113.4,Vanderbilt,Vanderbilt/USA,40.0,True,C-F,2.0,1.0,F-C,,,,,,
+,,,,1006,Svi,Mykhailiuk,1997-06-10,Ukraine,2018,3,6.0,7.0,2.01,205.0,93.0,Kansas,Kansas/Ukraine,17.0,True,G-F,19.0,1.0,G,,,,10.0,1.0,F
+,,,,2110,Oshae,Brissett,1998-06-20,Canada,2019,2,6.0,7.0,2.01,210.0,95.3,Syracuse,Syracuse/Canada,12.0,True,F-G,12.0,1.0,F,,,,,,
+,,,,970,Wenyen,Gabriel,1997-03-26,South Sudan,2019,2,6.0,9.0,2.06,205.0,93.0,Kentucky,Kentucky/South Sudan,35.0,True,F,32.0,1.0,F,,,,32.0,1.0,F
+,,,,2844,Neemias,Queta,1999-07-13,Portugal,2021,0,7.0,0.0,2.13,248.0,112.5,Utah State,Utah State/Portugal,88.0,True,C,88.0,1.0,C,,,,88.0,1.0,C
+,,,,2635,Payton,Pritchard,1998-01-28,USA,2020,1,6.0,1.0,1.85,195.0,88.5,Oregon,Oregon/USA,11.0,True,G,11.0,1.0,G,,,,,,
+,,,,2647,Lamar,Stevens,1997-07-09,USA,2020,1,6.0,6.0,1.98,230.0,104.3,Penn State,Penn State/USA,8.0,True,F,8.0,1.0,F,,,,,,
+,,,,2656,Xavier,Tillman,1999-01-12,USA,2020,1,6.0,8.0,2.03,245.0,111.1,Michigan State,Michigan State/USA,2.0,True,F,2.0,1.0,F-C,2.0,1.0,F-C,,,
+,,,,2851,Jaden,Springer,2002-09-25,USA,2021,0,6.0,4.0,1.93,202.0,91.6,Tennessee,Tennessee/USA,11.0,True,G,11.0,1.0,G,11.0,1.0,G,,,
+,,,,2921,DJ,Steward,2001-10-02,USA,0,0,6.0,2.0,1.88,163.0,73.9,Duke,Duke/USA,,True,G,18.0,1.0,G,,,,18.0,1.0,G
+,,,,2812,Sam,Hauser,1997-12-08,USA,2021,0,6.0,7.0,2.01,217.0,98.4,Virginia,Virginia/USA,30.0,True,F,30.0,1.0,F,,,,,,
+,,,,2788,Dalano,Banton,1999-11-07,Canada,2021,0,6.0,7.0,2.01,204.0,92.5,Nebraska,Nebraska/Canada,45.0,True,F,45.0,1.0,G,,,,,,
+,,,,3429,JD,Davison,,,0,0,,,,,,,,20.0,True,G,,,,,,,,,
+,,,,3943,Jordan,Walsh,,,0,0,6.0,,,205.0,,Arkansas,,27.0,True,G,,,,,,,,,
+,,,,3995,Drew,Peterson,,,0,0,6.0,,,205.0,,USC,,17.0,True,F,,,,,,,,,
+,,,,248,Al,Horford,1986-06-03,Dominican Republic,2007,14,6.0,9.0,2.06,240.0,108.9,Florida,Florida/Dominican Republic,42.0,True,C-F,,,,,,,,,
+,,,,242,Jrue,Holiday,1990-06-12,USA,2009,12,6.0,3.0,1.9,205.0,93.0,UCLA,UCLA/USA,21.0,True,G,,,,,,,,,
+,,,,432,Kristaps,Porzingis,1995-08-02,Latvia,2015,5,7.0,3.0,2.21,240.0,108.9,Cajasol Sevilla,Cajasol Sevilla/Latvia,6.0,True,F-C,,,,,,,,,
