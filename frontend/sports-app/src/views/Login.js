@@ -1,110 +1,61 @@
-import React, { useState, useEffect } from 'react';
-import '../CSS/Form.css';
+import React, { useState } from 'react';
+import '../CSS/Form.css'; // Make sure this file contains the new styles from the provided CSS
 import axios from 'axios';
 import swal from 'sweetalert2';
 
-
 function Login() {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const api = axios.create({
         baseURL: 'http://localhost:5500/api/',
-        withCredentials: true, //Needed for Sessions
+        withCredentials: true,
     });
 
-    useEffect(() => {
-        // Apply styles to body element
-        document.body.style.display = 'flex';
-        document.body.style.justifyContent = 'center';
-        document.body.style.alignItems = 'center';
-        document.body.style.height = '100vh';
-        document.body.style.margin = 0;
-        document.body.style.backgroundColor = 'rgb(231, 236, 225)';
-    }, []);
+    const handleEmail = (event) => setEmail(event.target.value);
+    const handlePassword = (event) => setPassword(event.target.value);
 
-    // Handler for setting Username
-    const handleUsername = (event) => {
-        setUsername(event.target.value);
-    };
-
-    // Handler for setting Password
-    const handlePassword = (event) => {
-        setPassword(event.target.value);
-    };
-
-    // User Information Submission Handler
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            // Sending POST request to login in user
-            const response = await api.post('login', { username: username, password: password });
-            console.log("Response Status is:");
-            // Successful login
+            const response = await api.post('login', { email, password });
             if (response.status === 200) {
-                swal.fire({ // Alert for successful login
-                    title: "Awesome",
-                    text: `Great to see you again, ${username}!`,
-                    icon: "success"
-                }).then(() => {
-                    window.location.href = 'http://localhost:3000/dashboard';
-                });
+                swal.fire("Awesome", "Great to see you again!", "success")
+                    .then(() => window.location.href = '/dashboard');
             }
+        } catch (error) {
+            swal.fire("Oops", "Seems like we couldn't fetch the info, try again", "error");
         }
-        catch (error) {
-        // Unsuccessful login
-        swal.fire({
-            title: "Oops", // Alert for unsuccessful login
-            text: "Seems like we couldn't fetch the info, try again",
-            icon: "error"
-        })
-        console.log("Error:", error.message);
-    }
-};
+    };
 
-// Redirection Handler for SignUp page
-const handleRedirect = (event) => {
-    window.location.href = 'http://localhost:3000/signup';
-}
-
-return (
-    <div>
-        <div className='header-container'>
-            <h1 style={{ fontSize: "12vh" }}>Login Page</h1>
-        </div>
-        <div className='form-container'>
-            <form>
-                <div>
-                    <label htmlFor="username">Username:</label>
-                    <input
-                        type="text"
-                        id="username"
-                        value={username}
-                        onChange={handleUsername}
+    return (
+        <div className="container" id="container">
+            <div className="form-container sign-in-container">
+                <form onSubmit={handleSubmit}>
+                    <h1>Sign in</h1>
+                    <div className="social-container">
+                        {/* Implement social login functionality here or remove */}
+                    </div>
+                    <span>or use your account</span>
+                    <input 
+                        type="email" 
+                        placeholder="Email" 
+                        value={email}
+                        onChange={handleEmail} 
                     />
-                </div>
-                <div>
-                    <label htmlFor="password">Password:</label>
-                    <input
-                        type="password"
-                        id="password"
+                    <input 
+                        type="password" 
+                        placeholder="Password" 
                         value={password}
                         onChange={handlePassword}
                     />
-                </div>
-            </form>
-            <div className='button-container'>
-                <button id="submit" type="submit" onClick={handleSubmit}>Submit</button>
-                <button onClick={handleRedirect}>New User?</button>
+                    <a href="#">Forgot your password?</a>
+                    <button>Sign In</button>
+                </form>
             </div>
-            <p>
-                Display_Username: {username}
-                <br></br>
-                Display_Password: {password}
-            </p>
+            {/* Overlay and other elements, adjust as needed */}
         </div>
-    </div>
-);
-};
+    );
+}
 
 export default Login;

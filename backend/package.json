@@ -15,6 +15,7 @@
     "express-session": "^1.18.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.9.2",
+    "nodemon": "^3.1.0",
     "sqlite3": "^5.1.7",
     "tedious": "^18.1.0"
   },
