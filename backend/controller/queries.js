@@ -70,6 +70,8 @@ function createTable(database, query, tableName){
     })
 }
 
+
+
 //Exporting functions to routes.js
 module.exports = {
     selectAllFromTable,
