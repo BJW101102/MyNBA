@@ -17,5 +17,9 @@
     ],
     "dataworkspace.excludedProjects": [
         "DB_Project/DB_Project.sqlproj"
+    ],
+    "cSpell.words": [
+        "firstname",
+        "lastname"
     ]
 }
