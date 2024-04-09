@@ -18,12 +18,34 @@ let db = new sqlite3.Database(db_path, (err) => {
     return;
   }
   console.log("Connected to the SQLite database.");
-  // createTables(db)
+  createTables(db)
   const dir = "C:\\Users\\Brandon Walton\\Documents\\Sports-Application\\backend\\data-files\\Players"
   // traverseDirectory(dir);
-  updatePlayerStats(teamID, season);
+  // updatePlayerStats(teamID, season);
+  updateGameStats(teamID, season)
 });
 
+function traverseDirectory(directory) {
+  // Get all files and subdirectories in the current directory
+  const items = fs.readdirSync(directory);
+
+  // Loop through each item
+  items.forEach(item => {
+    // Get the full path of the item
+    const itemPath = path.join(directory, item);
+
+    // Check if the item is a directory
+    if (fs.statSync(itemPath).isDirectory()) {
+      // If it's a directory, recursively traverse it
+      traverseDirectory(itemPath);
+    } else {
+      // If it's a file, check if it's a CSV file
+      if (path.extname(itemPath) === '.csv') {
+        processPlayerData(itemPath);
+      }
+    }
+  });
+}
 
 const processPlayerData = async (filePath) => {
   const players = await csv().fromFile(filePath);
@@ -51,31 +73,29 @@ const processPlayerData = async (filePath) => {
   })
 }
 
-function traverseDirectory(directory) {
-  // Get all files and subdirectories in the current directory
-  const items = fs.readdirSync(directory);
+// API Queries
+function getPlayerStatsByTeam(team_id, season, ) {
+  const url = "https://api-nba-v1.p.rapidapi.com/players/statistics";
+  const querystring = new URLSearchParams({ team: team_id, season: season });
 
-  // Loop through each item
-  items.forEach(item => {
-    // Get the full path of the item
-    const itemPath = path.join(directory, item);
+  const headers = {
+    "X-RapidAPI-Key": "b2a90f6514msh27c59dfd5ded947p1f4eb9jsnf4de5e98eb53",
+    "X-RapidAPI-Host": "api-nba-v1.p.rapidapi.com"
+  };
 
-    // Check if the item is a directory
-    if (fs.statSync(itemPath).isDirectory()) {
-      // If it's a directory, recursively traverse it
-      traverseDirectory(itemPath);
-    } else {
-      // If it's a file, check if it's a CSV file
-      if (path.extname(itemPath) === '.csv') {
-        processPlayerData(itemPath);
-      }
-    }
-  });
+  return axios.get(url, { headers, params: querystring })
+    .then(response => {
+      const player_data = response.data;
+      return player_data;
+    })
+    .catch(error => {
+      console.error("Error fetching data:", error);
+      return null;
+    });
 }
 
-// API Queries
-function getPlayerStatsByTeam(team_id, season) {
-  const url = "https://api-nba-v1.p.rapidapi.com/players/statistics";
+function getGameStatsByTeam(team_id, season, ) {
+  const url = "https://api-nba-v1.p.rapidapi.com/games";
   const querystring = new URLSearchParams({ team: team_id, season: season });
 
   const headers = {
@@ -98,6 +118,7 @@ async function updatePlayerStats(teamID, season) {
   try {
     const teamStats = await getPlayerStatsByTeam(teamID, season);
     if (teamStats) {
+      const insertPlayer = 'Insert INTO Players (TeamID, PlayerID, FirstName, LastName) VALUES(?, ?, ?, ?)';
       const updateQuery = `
         UPDATE PlayerStats 
         SET POS = ?, PTS = ?, REB = ?, AST = ?, BLKS = ?, FG = ?, LASTGAME_ID = ?
@@ -124,5 +145,37 @@ async function updatePlayerStats(teamID, season) {
     }
   } catch (error) {
     console.error('Error:', error);
+  }
+}
+
+async function updateGameStats(teamID, season){
+  try{
+    const gameStats = await getGameStatsByTeam(teamID, season)
+    if(gameStats){
+    //   const updateQuery = `
+    //   Insert Into PlayerStats 
+    //   SET GameID = ?, Date = ?, HomeID  = ?, VisitorID  = ?, HomeScore  = ?, VisitorScore = ?
+    //   WHERE HomeID = ? OR VisitorID = ?
+    // `;
+    const insertTeam = 'Insert INTO Games (GameID, Date, HomeID, VisitorID, HomeScore, VisitorScore) VALUES (?,?,?,?,?,?)'
+      gameStats["response"].forEach(game =>{
+        const gameID = game.id;
+        const date = game["date"]["start"];
+        const homeID = game["teams"]["home"].id;
+        const visitorID = game["teams"]["visitors"].id;
+        const homeScore = game["scores"]["home"]["points"];
+        const visitorScore = game["scores"]["visitors"]["points"];
+        db.run(insertTeam, [gameID, date, homeID, visitorID, homeScore, visitorScore], (error) => {
+          if (error) {
+            console.error('Error updating player stats: ', error);
+            return;
+          }
+          console.log('TeamID: %s game stats updated successfully!', teamID);
+        });
+      });
+    }
+
+  } catch(error){
+    console.error('Error', error)
   }
 }

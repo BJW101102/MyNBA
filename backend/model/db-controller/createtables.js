@@ -17,6 +17,17 @@ function createTables(db) {
             }
         );
 
+        db.run(`
+    CREATE TABLE IF NOT EXISTS Games (
+        GameID INTEGER PRIMARY KEY,
+        Date TEXT NOT NULL,
+        HomeID INTEGER NOT NULL,
+        VisitorID INTEGER NOT NULL,
+        HomeScore INTEGER,
+        VisitorScore INTEGER
+    )
+`);
+
         // Create users table
         db.run(
             `CREATE TABLE IF NOT EXISTS Teams (
