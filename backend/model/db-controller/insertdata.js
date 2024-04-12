@@ -11,7 +11,7 @@ const axios = require("axios");
 // Open the database
 const teamID = 1;  // Replace with the actual team ID
 const season = "2023";  // Replace with the desired season
-const db_path = "C:\\Users\\Brandon Walton\\Documents\\Sports-Application\\backend\\model\\sports-app.db"
+const db_path = "C:\\Users\\chewy\\Desktop\\Class Assignments\\csc4402\\Sports-Application\\backend\\model\\sports-app.db"
 let db = new sqlite3.Database(db_path, (err) => {
   if (err) {
     console.error("Error opening database", err.message);
