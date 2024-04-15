@@ -6,7 +6,7 @@ const createTables = require("./createtables");
 
 // Open the database
 const db_path =
-  "C:\\Users\\Brandon Walton\\Documents\\Sports-Application\\backend\\model\\sports-app.db";
+  "/Users/Raedan/Documents/GitHub/Sports-Application/backend/model/sports-app.db";
 let db = new sqlite3.Database(db_path, (err) => {
   if (err) {
     console.error("Error opening database", err.message);
@@ -15,16 +15,20 @@ let db = new sqlite3.Database(db_path, (err) => {
   console.log("Connected to the SQLite database.");
   // createTables(db)
   const dir =
-    "C:\\Users\\Brandon Walton\\Documents\\Sports-Application\\backend\\data-files\\Players";
-  // processPlayerData(path);
-  // traversePlayerDirectory(dir);
+    "/Users/Raedan/Documents/GitHub/Sports-Application/backend/data-files/Players";
+  traverseDirectory(dir);
+  const teamDir =
+    "/Users/Raedan/Documents/GitHub/Sports-Application/backend/data-files/Teams/Teams.csv";
+  processTeamData(teamDir);
 });
 
 const processTeamData = async (filePath) => {
   const teams = await csv().fromFile(filePath);
   const insertTeam =
-    "Insert INTO Teams (TeamID, Teamname, SportCategory) VALUES(?, ?, ?, ?)";
+    "Insert INTO Teams (TeamID, Teamname, SportCategory) VALUES(?, ?, ?)";
   const checkTeamExists = "SELECT TeamID FROM Teams WHERE TeamID = ?";
+  const checkTeamStatExists =
+    "SELECT TeamStatID FROM TeamStats WHERE TeamStatID = ?";
 
   const insertTeamStats =
     "Insert INTO TeamStats (TeamStatID, TeamID, Conference, Location) VALUES(?, ?, ?, ?)";
@@ -41,9 +45,9 @@ const processTeamData = async (filePath) => {
     const location = team.response.city;
 
     // TeamBranding table vars
-    const brandID = crypto.randomUUID();
+    const brandID = team.response.id;
 
-    // Check if player already exists
+    // Check if team already exists
     db.get(checkTeamExists, [teamID], (err, row) => {
       if (err) {
         console.error("Error checking team existence", err);
@@ -65,14 +69,27 @@ const processTeamData = async (filePath) => {
             );
           }
         });
+      }
+    });
 
+    // Check if team stats already exists
+    db.get(checkTeamStatExists, [teamStatID], (err, row) => {
+      if (err) {
+        console.error("Error checking team stat existence", err);
+        return;
+      }
+      if (row) {
+        console.log(
+          `Team stat already exists with ID: ${teamStatID}. Skipping insert.`
+        );
+      } else {
         // Insert into TeamStats table
         db.run(
           insertTeamStats,
           [teamStatID, teamID, conference, location],
           function (err) {
             if (err) {
-              console.error("Error inserting team", err);
+              console.error("Error inserting team stat", err);
             } else {
               console.log(
                 "TeamStats-Entered: Stat-ID: %s, Team-ID: Name: `%s`, Sport: `%s`",
