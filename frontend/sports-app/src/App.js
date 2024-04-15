@@ -3,6 +3,7 @@ import SignUp from './views/SignUp';
 import Login from './views/Login';
 import Dashboard from './views/Dashboard';
 import Sports from './views/Sports';
+import Team from './views/Team';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/signup" element={<SignUp />}/>
         <Route path="/dashboard" element={<Dashboard />}/>
         <Route path="/sports" element={<Sports />}/>
+        <Route path="/team" element={<Team />}/>
       </Routes>
     </Router>
 
