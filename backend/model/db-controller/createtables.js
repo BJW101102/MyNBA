@@ -17,6 +17,17 @@ function createTables(db) {
             }
         );
 
+        db.run(`
+    CREATE TABLE IF NOT EXISTS Games (
+        GameID INTEGER PRIMARY KEY,
+        Date TEXT NOT NULL,
+        HomeID INTEGER NOT NULL,
+        VisitorID INTEGER NOT NULL,
+        HomeScore INTEGER,
+        VisitorScore INTEGER
+    )
+`);
+
         // Create users table
         db.run(
             `CREATE TABLE IF NOT EXISTS Teams (
@@ -93,15 +104,19 @@ function createTables(db) {
 
         db.run(
             `CREATE TABLE IF NOT EXISTS PlayerStats (
-      PlayerID ForeignKey,
-      TeamID ForeignKey,
-      PlayerStatID INTEGER PRIMARY KEY AUTOINCREMENT,
-      Position TEXT NOT NULL,
-      PTS INTEGER NOT NULL,
-      REB INTEGER NOT NULL,
-      AST INTEGER NOT NULL,
-      FG INTEGER NOT NULL,
-      FOREIGN KEY (PlayerID) REFERENCES Players(PlayerID)
+        PlayerStatID INTEGER PRIMARY KEY AUTOINCREMENT,
+        TeamID ForeignKey,
+        PlayerID ForeignKey,
+        POS TEXT NOT NULL,
+        PTS INTEGER NOT NULL,
+        REB INTEGER NOT NULL,
+        AST INTEGER NOT NULL,
+        BLKS INTEGER NOT NULL,
+        FG INTEGER NOT NULL,
+        LASTGAME_ID INTEGER NOT NULL,
+        FOREIGN KEY (PlayerID) REFERENCES Players(PlayerID)
+        FOREIGN KEY (TeamID) REFERENCES Teams(TeamID)
+
     )`,
             [],
             function (err) {
