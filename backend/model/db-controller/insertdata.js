@@ -6,12 +6,10 @@ const path = require('path');
 const createTables = require("./createtables");
 const axios = require("axios");
 
-
-
 // Open the database
-const teamID = 1;  // Replace with the actual team ID
+const teamID =20;  // Replace with the actual team ID
 const season = "2023";  // Replace with the desired season
-const db_path = "C:\\Users\\Brandon Walton\\Documents\\Sports-Application\\backend\\model\\sports-app.db"
+const db_path = "C:\\Users\\ender\\OneDrive\\Documents\\GitHub\\Sports-Application\\backend\\model\\sports-app.db"
 let db = new sqlite3.Database(db_path, (err) => {
   if (err) {
     console.error("Error opening database", err.message);
@@ -21,10 +19,10 @@ let db = new sqlite3.Database(db_path, (err) => {
   createTables(db)
   const dir = "C:\\Users\\Brandon Walton\\Documents\\Sports-Application\\backend\\data-files\\Players"
   // traverseDirectory(dir);
-  // updatePlayerStats(teamID, season);
   updateGameStats(teamID, season)
 });
 
+// Used for CSV Parsing
 function traverseDirectory(directory) {
   // Get all files and subdirectories in the current directory
   const items = fs.readdirSync(directory);
@@ -47,6 +45,7 @@ function traverseDirectory(directory) {
   });
 }
 
+// Used for CSV Parsing
 const processPlayerData = async (filePath) => {
   const players = await csv().fromFile(filePath);
   const insertPlayer = 'Insert INTO Players (TeamID, PlayerID, FirstName, LastName) VALUES(?, ?, ?, ?)';
@@ -74,7 +73,7 @@ const processPlayerData = async (filePath) => {
 }
 
 // API Queries
-function getPlayerStatsByTeam(team_id, season, ) {
+function getPlayerStatsByTeam(team_id, season) {
   const url = "https://api-nba-v1.p.rapidapi.com/players/statistics";
   const querystring = new URLSearchParams({ team: team_id, season: season });
 
@@ -94,7 +93,7 @@ function getPlayerStatsByTeam(team_id, season, ) {
     });
 }
 
-function getGameStatsByTeam(team_id, season, ) {
+function getGameStatsByTeam(team_id, season) {
   const url = "https://api-nba-v1.p.rapidapi.com/games";
   const querystring = new URLSearchParams({ team: team_id, season: season });
 
@@ -148,34 +147,45 @@ async function updatePlayerStats(teamID, season) {
   }
 }
 
-async function updateGameStats(teamID, season){
-  try{
-    const gameStats = await getGameStatsByTeam(teamID, season)
-    if(gameStats){
-    //   const updateQuery = `
-    //   Insert Into PlayerStats 
-    //   SET GameID = ?, Date = ?, HomeID  = ?, VisitorID  = ?, HomeScore  = ?, VisitorScore = ?
-    //   WHERE HomeID = ? OR VisitorID = ?
-    // `;
-    const insertTeam = 'Insert INTO Games (GameID, Date, HomeID, VisitorID, HomeScore, VisitorScore) VALUES (?,?,?,?,?,?)'
-      gameStats["response"].forEach(game =>{
+async function updateGameStats(teamID, season) {
+  try {
+    const gameStats = await getGameStatsByTeam(teamID, season);
+    if (gameStats) {
+      const insertTeam = 'INSERT INTO Games (GameID, Date, HomeID, VisitorID, HomeScore, VisitorScore) VALUES (?,?,?,?,?,?)';
+      gameStats["response"].forEach(game => {
         const gameID = game.id;
         const date = game["date"]["start"];
         const homeID = game["teams"]["home"].id;
         const visitorID = game["teams"]["visitors"].id;
         const homeScore = game["scores"]["home"]["points"];
         const visitorScore = game["scores"]["visitors"]["points"];
-        db.run(insertTeam, [gameID, date, homeID, visitorID, homeScore, visitorScore], (error) => {
-          if (error) {
-            console.error('Error updating player stats: ', error);
+        // console.log(gameID)
+
+        // Check if the game ID already exists in the database
+        const checkIfExistsQuery = 'SELECT COUNT(*) as count FROM Games WHERE GameID = ?';
+        db.get(checkIfExistsQuery, [gameID], (err, row) => {
+          if (err) {
+            console.error('Error checking game existence:', err);
             return;
           }
-          console.log('TeamID: %s game stats updated successfully!', teamID);
+          if (row.count === 0) { // Game ID doesn't exist, proceed with insertion
+            db.run(insertTeam, [gameID, date, homeID, visitorID, homeScore, visitorScore], (error) => {
+              if (error) {
+                console.error('Error inserting game stats: ', error);
+                return;
+              }
+              console.log('TeamID: %s game stats updated successfully!', teamID);
+            });
+          } else {
+            console.log('Game with ID %s already exists, skipping insertion.', gameID);
+          }
         });
       });
+      updatePlayerStats(teamID, season);
     }
-
-  } catch(error){
-    console.error('Error', error)
+  } catch (error) {
+    console.error('Error', error);
   }
+
 }
+

@@ -50,7 +50,9 @@ function createTables(db) {
             `CREATE TABLE IF NOT EXISTS TeamStats (
       TeamID ForeignKey,
       TeamStatID INTEGER PRIMARY KEY AUTOINCREMENT,
+      Code TEXT NOT NULL,
       Conference TEXT NOT NULL,
+      Division TEXT NOT NULL,
       Location TEXT NOT NULL,
       FOREIGN KEY (TeamID) REFERENCES Teams(TeamID)
     )`,
