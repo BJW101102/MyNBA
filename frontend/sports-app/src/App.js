@@ -1,6 +1,5 @@
 import React from 'react';
-import SignUp from './views/SignUp';
-import Login from './views/Login';
+import AuthForm from './views/AuthForm';
 import Dashboard from './views/Dashboard';
 import Sports from './views/Sports';
 import Team from './views/Team';
@@ -12,8 +11,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route index element={<Login />}/>  
-        <Route path="/signup" element={<SignUp />}/>
+        <Route index element={<AuthForm />}/>  
         <Route path="/dashboard" element={<Dashboard />}/>
         <Route path="/sports" element={<Sports />}/>
         <Route path="/team" element={<Team />}/>

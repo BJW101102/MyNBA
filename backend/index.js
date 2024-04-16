@@ -20,7 +20,7 @@ app.use(session({
     secret: 'MikeTheTiger2025!',
     resave: false,
     saveUninitialized: true,
-    cookie:{
+    cookie: {
         secure: false,
         httpOnly: true,
         maxAge: 36000000,
@@ -36,7 +36,7 @@ app.listen(PORT, () => {
 });
 
 // Connecting to local database
-const path = "C:\\Users\\ender\\OneDrive\\Documents\\GitHub\\Sports-Application\\backend\\database\\sports-app.db"; // Change to local path
+const path = "./model/sports-app.db"; //No need to change to local path, THIS IS THE RELATIVE PATH
 const db = new sqlite3.Database(path, (err) => {
     if (err) {
         console.error('Error opening database:', err.message);
@@ -56,7 +56,7 @@ app.use('/api', routes);
 
 
 // Basic SQL Queries
-const {selectAllFromTable, deleteAllFromTable, deleteTable, createTable} = require('./controller/queries.js');
+const { selectAllFromTable, deleteAllFromTable, deleteTable, createTable } = require('./controller/queries.js');
 const createUserTable = `
 CREATE TABLE userinfo ( 
     userID INTEGER PRIMARY KEY, 
@@ -64,5 +64,7 @@ CREATE TABLE userinfo (
     password TEXT(50))`
     ;
 
-selectAllFromTable(db, "userinfo")
+
+
+selectAllFromTable(db, "UserInfo")
 
