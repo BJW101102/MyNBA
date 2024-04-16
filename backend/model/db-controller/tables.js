@@ -4,8 +4,11 @@ const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
 const createTables = require("./createtables");
 
+
+//NOTE: RUN COMMAND: ....\backend\model\db-controller> node .\model\db-controller\tables.js
+
 // Open the database
-const db_path = "C:\\Users\\ender\\OneDrive\\Documents\\GitHub\\Sports-Application\\backend\\model\\sports-app.db";
+const db_path = "../sports-app.db";
 let db = new sqlite3.Database(db_path, (err) => {
   if (err) {
     console.error("Error opening database", err.message);
@@ -13,9 +16,9 @@ let db = new sqlite3.Database(db_path, (err) => {
   }
   console.log("Connected to the SQLite database.");
   createTables(db)
-  const playDir = "C:\\Users\\ender\\OneDrive\\Documents\\GitHub\\Sports-Application\\backend\\data-files\\Players";
+  const playDir = "../backend/data-files/Players";
   traverseDirectory(playDir);
-  const teamDir = "C:\\Users\\ender\\OneDrive\\Documents\\GitHub\\Sports-Application\\backend\\data-files\\Teams\\Teams.csv";
+  const teamDir = "../backend/data-files/Teams/Teams.csv";
   processTeamData(teamDir);
 });
 
