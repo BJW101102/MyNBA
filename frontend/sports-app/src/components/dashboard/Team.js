@@ -17,7 +17,7 @@ function Team({logo}) {
                             {/* Logo Container */}
                             <Col>
                                 <Card.Body style={{ width: "30vh", border: "2px solid black" }}>
-                                    <Card.Img fluid variant="top" style={{ width: "20vh", height: "20vh" }} src={logo} rounded />
+                                    <Card.Img fluid variant="top"  src={logo} rounded />
                                     <Card.Text className="team-font-size"></Card.Text>
                                 </Card.Body>
                             </Col>

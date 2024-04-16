@@ -8,7 +8,7 @@ import Image from 'react-bootstrap/Image';
 
 function Dash({ username, userID }) {
 
-  const logo = "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/lal.png&h=200&w=200"
+  const logo = "https://logos-world.net/wp-content/uploads/2020/05/Brooklyn-Nets-Logo-700x394.png"
   const logo2 = "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/mia.png&h=200&w=200"
   return (
     <div className="dash-container">

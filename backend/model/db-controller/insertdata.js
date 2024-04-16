@@ -5,74 +5,25 @@ const sqlite3 = require("sqlite3").verbose();
 const path = require('path');
 const createTables = require("./createtables");
 const axios = require("axios");
+const { error } = require('console');
 
 // Open the database
-const teamID =20;  // Replace with the actual team ID
+const teamID = 20;  // Replace with the actual team ID
+const nbaTeamID = [1,2,3,4,5,6,7,8,9,10,11,14,15,16,17,19,20,21,22,23,24,25,26,27,28,29,30,31,38,40,41]
 const season = "2023";  // Replace with the desired season
-const db_path = "C:\\Users\\ender\\OneDrive\\Documents\\GitHub\\Sports-Application\\backend\\model\\sports-app.db"
+const db_path = "../backend/model/sports-app.db";
 let db = new sqlite3.Database(db_path, (err) => {
   if (err) {
     console.error("Error opening database", err.message);
     return;
   }
   console.log("Connected to the SQLite database.");
-  createTables(db)
-  const dir = "C:\\Users\\Brandon Walton\\Documents\\Sports-Application\\backend\\data-files\\Players"
-  // traverseDirectory(dir);
-  updateGameStats(teamID, season)
+  updateGameStats(41, season)
 });
 
-// Used for CSV Parsing
-function traverseDirectory(directory) {
-  // Get all files and subdirectories in the current directory
-  const items = fs.readdirSync(directory);
 
-  // Loop through each item
-  items.forEach(item => {
-    // Get the full path of the item
-    const itemPath = path.join(directory, item);
 
-    // Check if the item is a directory
-    if (fs.statSync(itemPath).isDirectory()) {
-      // If it's a directory, recursively traverse it
-      traverseDirectory(itemPath);
-    } else {
-      // If it's a file, check if it's a CSV file
-      if (path.extname(itemPath) === '.csv') {
-        processPlayerData(itemPath);
-      }
-    }
-  });
-}
 
-// Used for CSV Parsing
-const processPlayerData = async (filePath) => {
-  const players = await csv().fromFile(filePath);
-  const insertPlayer = 'Insert INTO Players (TeamID, PlayerID, FirstName, LastName) VALUES(?, ?, ?, ?)';
-  const insertPlayerStats = 'INSERT INTO PlayerStats(TeamID, PlayerID, POS, PTS, REB, AST, BLKS, FG, LASTGAME_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
-  players.forEach(player => {
-    const playerID = player.response.id;
-    const firstName = player.response.firstname;
-    const lastName = player.response.lastname;
-    const teamID = players[0].parameters.team;
-    db.run(insertPlayer, [teamID, playerID, firstName, lastName], insertPlayerStats, [teamID, playerID, "None", 0, 0, 0, 0, 0, 0], function (err) {
-      if (err) {
-        console.error('Error inserting player', err);
-      } else {
-        console.log("Player-Entered: %s, %s, ID: %d, Team: %d", firstName, lastName, playerID, teamID);
-      }
-    })
-    db.run(insertPlayerStats, [teamID, playerID, "None", 0, 0, 0, 0, 0, 0], function (err) {
-      if (err) {
-        console.error('Error inserting player', err);
-      } else {
-        console.log("Player-Entered: %s", playerID);
-      }
-    })
-  })
-}
-
-// API Queries
 function getPlayerStatsByTeam(team_id, season) {
   const url = "https://api-nba-v1.p.rapidapi.com/players/statistics";
   const querystring = new URLSearchParams({ team: team_id, season: season });
@@ -117,28 +68,39 @@ async function updatePlayerStats(teamID, season) {
   try {
     const teamStats = await getPlayerStatsByTeam(teamID, season);
     if (teamStats) {
-      const insertPlayer = 'Insert INTO Players (TeamID, PlayerID, FirstName, LastName) VALUES(?, ?, ?, ?)';
-      const updateQuery = `
+      const updatePlayerStats = `
         UPDATE PlayerStats 
         SET POS = ?, PTS = ?, REB = ?, AST = ?, BLKS = ?, FG = ?, LASTGAME_ID = ?
         WHERE PlayerID = ? AND TeamID = ?
       `;
+      const insertPlayerStat = `INSERT INTO PlayerStats (POS, PTS, REB, AST, BLKS, FG, LASTGAME_ID) VALUES (?,?,?,?,?,?,?)`
+
+      const checkPlayerExist = "SELECT PlayerID FROM PLayers WHERE PlayerID = ?";
       teamStats["response"].forEach(player => {
-        const playerID = player["player"].id
-        const pos = player["pos"]
-        const pts = parseInt(player["points"])
-        const reb = parseInt(player["totReb"])
-        const ast = parseInt(player["assists"])
-        const blks = parseInt(player["blocks"])
-        const fgp = parseInt(player["fgp"])
+        const playerID = player["player"].id;
+        const pos = player["pos"];
+        const pts = parseInt(player["points"]);
+        const reb = parseInt(player["totReb"]);
+        const ast = parseInt(player["assists"]);
+        const blks = parseInt(player["blocks"]);
+        const fgp = parseInt(player["fgp"]);
         const lg = parseInt(player["game"].id);
-        // Assuming db is your database connection
-        db.run(updateQuery, [pos, pts, reb, ast, blks, fgp, lg, playerID, teamID], (error) => {
-          if (error) {
-            console.error('Error updating player stats: ', error);
+
+        db.get(checkPlayerExist, [playerID], (err, row) => {
+          if (err) {
+            console.error("Error Checking Player Exist (PlayerStats)", err);
             return;
+          } if (row) {
+            db.run(updatePlayerStats, [pos, pts, reb, ast, blks, fgp, lg, playerID, teamID], (error) => {
+              if (error) {
+                console.error('Error updating player stats: ', error);
+                return;
+              }
+              console.log('PlayerID: %s POS: %s stats updated successfully!', playerID, pos);
+            });
+          } else {
+            console.log("PlayerID %d does not exist", playerID)
           }
-          console.log('PlayerID: %s stats updated successfully!', playerID);
         });
       });
     }
@@ -151,7 +113,8 @@ async function updateGameStats(teamID, season) {
   try {
     const gameStats = await getGameStatsByTeam(teamID, season);
     if (gameStats) {
-      const insertTeam = 'INSERT INTO Games (GameID, Date, HomeID, VisitorID, HomeScore, VisitorScore) VALUES (?,?,?,?,?,?)';
+      const insertTeamGame = 
+      "INSERT INTO Games (GameID, Date, HomeID, VisitorID, HomeScore, VisitorScore) VALUES (?,?,?,?,?,?)";
       gameStats["response"].forEach(game => {
         const gameID = game.id;
         const date = game["date"]["start"];
@@ -159,25 +122,26 @@ async function updateGameStats(teamID, season) {
         const visitorID = game["teams"]["visitors"].id;
         const homeScore = game["scores"]["home"]["points"];
         const visitorScore = game["scores"]["visitors"]["points"];
-        // console.log(gameID)
+        const checkGameExist = "SELECT GameID FROM Games WHERE GameID = ?";
 
+        // console.log(gameID)
         // Check if the game ID already exists in the database
-        const checkIfExistsQuery = 'SELECT COUNT(*) as count FROM Games WHERE GameID = ?';
-        db.get(checkIfExistsQuery, [gameID], (err, row) => {
+        db.get(checkGameExist, [gameID], (err, row) => {
           if (err) {
-            console.error('Error checking game existence:', err);
+            console.error('Error checking game existence: ', err);
             return;
           }
-          if (row.count === 0) { // Game ID doesn't exist, proceed with insertion
-            db.run(insertTeam, [gameID, date, homeID, visitorID, homeScore, visitorScore], (error) => {
-              if (error) {
-                console.error('Error inserting game stats: ', error);
-                return;
-              }
-              console.log('TeamID: %s game stats updated successfully!', teamID);
-            });
+          if (row) { // Game ID doesn't exist, proceed with insertion
+            console.log("Game %d already exist, skipping Insert", gameID);
           } else {
-            console.log('Game with ID %s already exists, skipping insertion.', gameID);
+            db.run(insertTeamGame, [gameID, date, homeID, visitorID, homeScore, visitorScore], (err) => {
+              if (err){
+                console.error('Error inserting game: ', err);
+              }
+              else {
+                console.log ("Game %d inserted into Games Table", gameID);
+              }
+            })
           }
         });
       });

@@ -4,8 +4,11 @@ const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
 const createTables = require("./createtables");
 
+
+//NOTE: RUN COMMAND: ....\backend\model\db-controller> node .\model\db-controller\tables.js
+
 // Open the database
-const db_path = "C:/Users/ender/OneDrive/Documents/GitHub/Sports-Application/backend/model/sports-app.db";
+const db_path = "../backend/model/sports-app.db";
 let db = new sqlite3.Database(db_path, (err) => {
   if (err) {
     console.error("Error opening database", err.message);
@@ -13,9 +16,11 @@ let db = new sqlite3.Database(db_path, (err) => {
   }
   console.log("Connected to the SQLite database.");
   createTables(db)
-  const playDir = "C:\\Users\\ender\\OneDrive\\Documents\\GitHub\\Sports-Application\\backend\\data-files\\Players";
+  const playDir = "../backend/data-files/Players";
+  const brandDir = "../backend/data-files/Teams/Brand.csv"
+  const teamDir = "../backend/data-files/Teams/Teams.csv";
+  processTeamBranding(brandDir)
   traverseDirectory(playDir);
-  const teamDir = "C:\\Users\\ender\\OneDrive\\Documents\\GitHub\\Sports-Application\\backend\\data-files\\Teams\\Teams.csv";
   processTeamData(teamDir);
 });
 
@@ -174,6 +179,42 @@ const processPlayerData = async (filePath) => {
   });
 };
 
+const processTeamBranding = async(filePath) =>{
+  const branding = await csv().fromFile(filePath);
+  const insertBranding = 
+  "INSERT INTO TeamBranding (TeamID, Logo, PrimaryColor, SecondaryColor) VALUES(?,?,?,?)"
+  const checkBrandingExists = 
+  "SELECT TeamID FROM TeamBranding WHERE TeamID = ?";
+  branding.forEach((team =>{
+    const teamID = team.id
+    const logo = team.logo
+    const primary = team.primary
+    const secondary = team.secondary
+
+    //Check if Branding Exist
+    db.get(checkBrandingExists, [teamID], (err, row) => {
+      if (err) {
+        console.error("Error checking player existence", err);
+        return;
+      }
+      if (row) {
+        console.log(
+          `Team already exists with ID: ${teamID}. Skipping insert.`
+        );
+      } else {
+        // Inserting Branding
+        db.run(insertBranding, [teamID, logo, primary, secondary], (err) =>{
+          if(err){
+            console.log('Error inserting Team %s', teamID)
+          }
+          else {
+            console.log('Team %s entered into TeamBranding', teamID)
+        }});
+      }
+    });
+  }))
+}
+
 function traverseDirectory(directory) {
   // Get all files and subdirectories in the current directory
   const items = fs.readdirSync(directory);
@@ -190,7 +231,7 @@ function traverseDirectory(directory) {
     } else {
       // If it's a file, check if it's a CSV file
       if (path.extname(itemPath) === ".csv") {
-        processPlayerData(itemPath);
+          processPlayerData(itemPath)
       }
     }
   });
