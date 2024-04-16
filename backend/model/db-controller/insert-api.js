@@ -1,14 +1,10 @@
 
-const fs = require('fs');
-const csv = require("csvtojson");
+
+//BEGIN: TESTING DB: DONT COPY
 const sqlite3 = require("sqlite3").verbose();
-const path = require('path');
-const createTables = require("./createtables");
 const axios = require("axios");
-const { error } = require('console');
 
 // Open the database
-const teamID = 20;  // Replace with the actual team ID
 const nbaTeamID = [1,2,3,4,5,6,7,8,9,10,11,14,15,16,17,19,20,21,22,23,24,25,26,27,28,29,30,31,38,40,41]
 const season = "2023";  // Replace with the desired season
 const db_path = "../backend/model/sports-app.db";
@@ -18,10 +14,9 @@ let db = new sqlite3.Database(db_path, (err) => {
     return;
   }
   console.log("Connected to the SQLite database.");
-  updateGameStats(41, season)
+  updateGameStats(41, season);
 });
-
-
+//END: TESTING DB: DONT COPY
 
 
 function getPlayerStatsByTeam(team_id, season) {
@@ -109,6 +104,8 @@ async function updatePlayerStats(teamID, season) {
   }
 }
 
+
+// JUST CALL updateGameStats
 async function updateGameStats(teamID, season) {
   try {
     const gameStats = await getGameStatsByTeam(teamID, season);
