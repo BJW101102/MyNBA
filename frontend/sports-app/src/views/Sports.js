@@ -743,6 +743,414 @@ function Sports() {
                     "lastName": "Milton"
                 }
             ]
+        }, {
+            "teamID": 10,
+            "name": "Detroit Pistons",
+            "logo": "https://logos-world.net/wp-content/uploads/2020/05/Detroit-Pistons-logo-700x394.png",
+            "primary": "#C8102E",
+            "secondary": "#1D42BA",
+            "code": "DET",
+            "conference": "East",
+            "division": "Central",
+            "location": "Detroit",
+            "players": [
+                {
+                    "teamID": 10,
+                    "playerID": 845,
+                    "firstName": "Monte",
+                    "lastName": "Morris"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 945,
+                    "firstName": "Troy",
+                    "lastName": "Brown Jr."
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 987,
+                    "firstName": "Kevin",
+                    "lastName": "Knox II"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 931,
+                    "firstName": "Marvin",
+                    "lastName": "Bagley III"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 2557,
+                    "firstName": "Jontay",
+                    "lastName": "Porter"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 2811,
+                    "firstName": "Quentin",
+                    "lastName": "Grimes"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 2666,
+                    "firstName": "James",
+                    "lastName": "Wiseman"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 2599,
+                    "firstName": "Killian",
+                    "lastName": "Hayes"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 2587,
+                    "firstName": "Malachi",
+                    "lastName": "Flynn"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 2648,
+                    "firstName": "Isaiah",
+                    "lastName": "Stewart"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 2678,
+                    "firstName": "Zavier",
+                    "lastName": "Simpson"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 2829,
+                    "firstName": "Isaiah",
+                    "lastName": "Livers"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 2801,
+                    "firstName": "Cade",
+                    "lastName": "Cunningham"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 3790,
+                    "firstName": "Stanley",
+                    "lastName": "Umude"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 3451,
+                    "firstName": "Jaden",
+                    "lastName": "Ivey"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 3433,
+                    "firstName": "Jalen",
+                    "lastName": "Duren"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 3481,
+                    "firstName": "Jared",
+                    "lastName": "Rhoden"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 3438,
+                    "firstName": "Simone",
+                    "lastName": "Fontecchio"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 3969,
+                    "firstName": "Tosan",
+                    "lastName": "Evbuomwan"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 3417,
+                    "firstName": "Buddy",
+                    "lastName": "Boeheim"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 3970,
+                    "firstName": "Marcus",
+                    "lastName": "Sasser"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 3968,
+                    "firstName": "Malcolm",
+                    "lastName": "Cazalon"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 181,
+                    "firstName": "Danilo",
+                    "lastName": "Gallinari"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 84,
+                    "firstName": "Alec",
+                    "lastName": "Burks"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 190,
+                    "firstName": "Taj",
+                    "lastName": "Gibson"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 3971,
+                    "firstName": "Ausar",
+                    "lastName": "Thompson"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 384,
+                    "firstName": "Mike",
+                    "lastName": "Muscala"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 177,
+                    "firstName": "Evan",
+                    "lastName": "Fournier"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 60,
+                    "firstName": "Bojan",
+                    "lastName": "Bogdanovic"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 221,
+                    "firstName": "Joe",
+                    "lastName": "Harris"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 999,
+                    "firstName": "Chimezie",
+                    "lastName": "Metu"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 1001,
+                    "firstName": "Shake",
+                    "lastName": "Milton"
+                }
+            ]
+        },{
+            "teamID": 10,
+            "name": "Detroit Pistons",
+            "logo": "https://logos-world.net/wp-content/uploads/2020/05/Detroit-Pistons-logo-700x394.png",
+            "primary": "#C8102E",
+            "secondary": "#1D42BA",
+            "code": "DET",
+            "conference": "East",
+            "division": "Central",
+            "location": "Detroit",
+            "players": [
+                {
+                    "teamID": 10,
+                    "playerID": 845,
+                    "firstName": "Monte",
+                    "lastName": "Morris"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 945,
+                    "firstName": "Troy",
+                    "lastName": "Brown Jr."
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 987,
+                    "firstName": "Kevin",
+                    "lastName": "Knox II"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 931,
+                    "firstName": "Marvin",
+                    "lastName": "Bagley III"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 2557,
+                    "firstName": "Jontay",
+                    "lastName": "Porter"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 2811,
+                    "firstName": "Quentin",
+                    "lastName": "Grimes"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 2666,
+                    "firstName": "James",
+                    "lastName": "Wiseman"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 2599,
+                    "firstName": "Killian",
+                    "lastName": "Hayes"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 2587,
+                    "firstName": "Malachi",
+                    "lastName": "Flynn"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 2648,
+                    "firstName": "Isaiah",
+                    "lastName": "Stewart"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 2678,
+                    "firstName": "Zavier",
+                    "lastName": "Simpson"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 2829,
+                    "firstName": "Isaiah",
+                    "lastName": "Livers"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 2801,
+                    "firstName": "Cade",
+                    "lastName": "Cunningham"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 3790,
+                    "firstName": "Stanley",
+                    "lastName": "Umude"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 3451,
+                    "firstName": "Jaden",
+                    "lastName": "Ivey"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 3433,
+                    "firstName": "Jalen",
+                    "lastName": "Duren"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 3481,
+                    "firstName": "Jared",
+                    "lastName": "Rhoden"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 3438,
+                    "firstName": "Simone",
+                    "lastName": "Fontecchio"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 3969,
+                    "firstName": "Tosan",
+                    "lastName": "Evbuomwan"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 3417,
+                    "firstName": "Buddy",
+                    "lastName": "Boeheim"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 3970,
+                    "firstName": "Marcus",
+                    "lastName": "Sasser"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 3968,
+                    "firstName": "Malcolm",
+                    "lastName": "Cazalon"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 181,
+                    "firstName": "Danilo",
+                    "lastName": "Gallinari"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 84,
+                    "firstName": "Alec",
+                    "lastName": "Burks"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 190,
+                    "firstName": "Taj",
+                    "lastName": "Gibson"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 3971,
+                    "firstName": "Ausar",
+                    "lastName": "Thompson"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 384,
+                    "firstName": "Mike",
+                    "lastName": "Muscala"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 177,
+                    "firstName": "Evan",
+                    "lastName": "Fournier"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 60,
+                    "firstName": "Bojan",
+                    "lastName": "Bogdanovic"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 221,
+                    "firstName": "Joe",
+                    "lastName": "Harris"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 999,
+                    "firstName": "Chimezie",
+                    "lastName": "Metu"
+                },
+                {
+                    "teamID": 10,
+                    "playerID": 1001,
+                    "firstName": "Shake",
+                    "lastName": "Milton"
+                }
+            ]
         }
     
   

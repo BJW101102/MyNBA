@@ -7,8 +7,8 @@ import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-function Team() {
-    const teamData = {
+function Team( { teamData } ) {
+     teamData = {
         "teamID": 17,
         "name": "Los Angeles Lakers",
         "logo": "https://logos-world.net/wp-content/uploads/2020/05/Los-Angeles-Lakers-Logo-700x394.png",
