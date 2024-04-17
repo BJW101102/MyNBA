@@ -9,7 +9,7 @@ function Team({ team }) {
       <Card className="team m-2 p-2" style={{ border: "2px solid white" }}>
         <Card.Title className="team-font-size" style={{ background: "#E3E1E1", border: "2px solid black" }}>{team.name}</Card.Title>
         <Card.Body className="d-flex flex-row" style={{ border: "2px solid white", overflowX: "auto" }}>
-          <Card.Img fluid variant="top" src={team.logo} rounded style={{ width: "30vh", border: "2px solid black" }} />
+          <Card.Img fluid variant="top" src={team.logo} rounded style={{ border: "2px solid black" }} />
         </Card.Body>
         <ListGroup className="team-font-size" style={{ maxHeight: '100px', overflowY: 'auto' }}>
           {team.players.map(player => (
