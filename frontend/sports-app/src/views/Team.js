@@ -82,8 +82,6 @@ function Team() {
 
             </div>
         </Container>
-
     );
 };
-
 export default Team;

@@ -57,14 +57,5 @@ app.use('/api', routes);
 
 // Basic SQL Queries
 const { selectAllFromTable, deleteAllFromTable, deleteTable, createTable } = require('./controller/queries.js');
-const createUserTable = `
-CREATE TABLE userinfo ( 
-    userID INTEGER PRIMARY KEY, 
-    username TEXT(50) UNIQUE, 
-    password TEXT(50))`
-    ;
-
-
-
 selectAllFromTable(db, "UserInfo")
 

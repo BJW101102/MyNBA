@@ -104,6 +104,36 @@ router.get('/userdata', async (req, res) => {
     }
 });
 
+// Fecthes for all Teams on the Teams table
+router.get('/allteams', async (req, res) => {
+    const selectAllTeams = `
+    SELECT *
+    FROM Teams
+    INNER JOIN TeamStats ON Teams.TeamID = TeamStats.TeamID
+    INNER JOIN TeamBranding ON Teams.TeamID = TeamBranding.TeamID;
+    `;
+    const allTeams = [];
+    req.db.all(selectAllTeams, (err, rows) => {
+        if (err) {
+            console.error("Error selecting Teams");
+            return res.status(500).json({ message: "Internal Server Error" });
+        } else {
+            rows.forEach(row =>{
+                let team = new TeamInfo(row.TeamID);
+                team.setPrimary(row.PrimaryColor);
+                team.setSecondary(row.SecondaryColor);
+                team.setLocation(row.location);
+                team.setLogo(row.logo);
+                team.setTeamName(row.Teamname);
+                team.setConference(row.Conference);
+                team.setCode(row.Code);
+                allTeams.push(team);
+            })
+        }
+        return res.status(200).json({nbaTeams: allTeams, message: "Success"});
+    });
+});
+
 // Handles following a team
 router.put("/follow/:id", async (req, res) => {
     try {
@@ -299,7 +329,7 @@ router.patch("/update-team/:id", async (req, res) => {
     if (!req.session.user) {
         return res.status(401).json({ message: "User not authenticated" });
     }
-    return res.status(200).json({message: "Success"});
+    return res.status(200).json({ message: "Success" });
     // Call updateGameStats 
 });
 
