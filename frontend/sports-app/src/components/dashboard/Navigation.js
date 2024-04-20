@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/esm/Row';
 
-function Navigation({ username, api }) {
+function Navigation({ username, userID, api }) {
 
   const handleLogOut = async (event) => {
     try {
@@ -23,7 +23,7 @@ function Navigation({ username, api }) {
   return (
     <Row style = {{border: "1px solid black"}}>
       <Navbar expand="sm" className="bg-body-tertiary">
-        <Navbar.Brand href="#"> Hello, {username}</Navbar.Brand>
+        <Navbar.Brand href="#"> Hello, {username}:{userID}</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav

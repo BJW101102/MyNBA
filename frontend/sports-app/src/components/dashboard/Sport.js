@@ -6,11 +6,12 @@ import Button from 'react-bootstrap/Button';
 function Sport({ team }) {
     return (
         <Col className="mt-2">
-            <Card className="p-2 pb-0" style={{ border: "1px solid black" }}>
-                <Card.Img style={{ border: "1px solid black", borderRadius: "10px" }} variant="top" fluid rounded src={team.logo} />
+      <Card className="team m-2 p-0 custom-card" style={{margin: "0", padding: "0"}}  >
+            <Card.Title className="team-font-size" style={{ backgroundColor: `${team.primary}`, color: "white", width: "100%", padding: "10px 20px", borderTopLeftRadius: "6px", borderTopRightRadius: "6px"}}>{team.code}, {team.name}</Card.Title>
+                {/* <Card.Subtitle>{team.conference}, {team.division} </Card.Subtitle> */}
+                <Card.Img variant="top" fluid rounded src={team.logo} />
                 <Card.Body>
-                    <Card.Text className="m-0">
-                        {team.name}
+                    <Card.Text className="m-0"> 
                     </Card.Text>
                     <Button className="button" style={{ borderRadius: "30px" }} size="sm">+</Button>
                 </Card.Body>

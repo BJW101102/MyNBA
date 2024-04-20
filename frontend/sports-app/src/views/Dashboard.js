@@ -7,9 +7,6 @@ import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 
 
-
-
-
 function Dashboard() {
 
     const [username, setUsername] = useState('');
@@ -44,10 +41,10 @@ function Dashboard() {
         <Container fluid style={{border: "2px solid black"}}> {/* This container is the screen container, there should only be one per page*/}
             <div className="App">
                 <header >
-                    <Navigation username={username} api={api} ></Navigation>
+                    <Navigation username={username} userID={userID} api={api} ></Navigation>
                 </header>
                 <main>
-                    <Dash username={username} userID={userID}></Dash>
+                    <Dash username={username} userID={userID} api={api}></Dash>
                 </main>
             </div>
         </Container>

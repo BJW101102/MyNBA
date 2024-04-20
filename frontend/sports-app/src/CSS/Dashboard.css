@@ -1,35 +1,35 @@
-.user-info-container {
-  border: 1px solid black; /* Add black border */
-  width: 95%; /* This remains percentage to avoid awkward resizing */
-  height: 75vh; /* Adjust height */
+/* .user-info-container {
+  border: 1px solid black;
+  width: 95%; 
+  height: 75vh; 
   margin-left: 3%;
 }
 
 .profile-picture-container{
-  border: 1px solid black; /* Add black border */
+  border: 1px solid black; 
   height: 20vh;
   width: 25vh;
   margin-left: 3vh;
 }
 
 .user-meta-container{
-  border: 1px solid black; /* Add black border */
+  border: 1px solid black; 
   height: 50vh;
   margin-right: 1vh;
 }
 
 .header-container {
   display: flex;
-  align-items: center; /* Align items vertically */
+  align-items: center; 
 }
 
 .navbar-container{
-  margin-left: "80vh"; /* Push the navbar to the right */
+  margin-left: "80vh"; 
 }
 
 .search-bar {
-  margin-left: auto; /* Push the search bar to the right */
-  margin-right: 10px; /* Add some space to the right of the search bar */
+  margin-left: auto; 
+  margin-right: 10px; 
 }
 
 .nav-button-container{
@@ -40,10 +40,11 @@
 .side-bar{
   background-color: rgb(228, 220, 220);
   height: 500px;
-}
+} */
 
 .teams{
-  background-color: rgb(118, 109, 109);
+  background-color: #474C50;
+  /* background-color: greenyellow; */
 }
 .img-border{
   border: 1px solid black;
@@ -59,5 +60,5 @@
   border-radius: 5px;
 }
 .team-font-size{
-  font-size: .5rem;
+  font-size: .75rem;
 }

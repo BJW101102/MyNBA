@@ -122,15 +122,17 @@ router.get('/allteams', async (req, res) => {
                 let team = new TeamInfo(row.TeamID);
                 team.setPrimary(row.PrimaryColor);
                 team.setSecondary(row.SecondaryColor);
-                team.setLocation(row.location);
-                team.setLogo(row.logo);
+                team.setLocation(row.Location);
+                team.setLogo(row.Logo);
                 team.setTeamName(row.Teamname);
                 team.setConference(row.Conference);
+                team.setDivision(row.Division);
                 team.setCode(row.Code);
                 allTeams.push(team);
+                console.log(row)
             })
         }
-        return res.status(200).json({nbaTeams: allTeams, message: "Success"});
+        return res.status(200).json(allTeams);
     });
 });
 
