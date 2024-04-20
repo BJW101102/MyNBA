@@ -42,19 +42,33 @@ function Dash({ username, userID, api }) {
             <Card.Body>
               <Card.Title style={{ color: isDark("#e3e1e1") ? '#FFF' : '#000' }}>Followed Teams</Card.Title>
               <Card.Text>
-                <Row>
+                <ListGroup className="team-font-size" style={{ overflowY: 'auto' }}>
                   {followedTeams.map(team => (
-                    <ListGroup className="team-font-size" style={{overflowY: 'auto' }}>
-                      <ListGroup.Item style={{
+                    <ListGroup.Item 
+                      key={team.teamID}
+                      style={{
                         backgroundColor: `${team.secondary}`,
                         color: isDark(team.secondary) ? '#FFF' : '#000', // Change text color based on background
-                        fontWeight: "bold"
-                      }}>
-                        {team.code}, {team.division}
-                      </ListGroup.Item>
-                    </ListGroup>
+                        fontWeight: "bold",
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between'
+                      }}
+                    >
+                      <span>{team.code}, {team.division}</span>
+                      <img 
+                        src={team.logo} 
+                        alt={`${team.code} logo`}
+                        style={{
+                          height: '20px',
+                          width: 'auto', // Maintain aspect ratio
+                          objectFit: 'contain', // Ensure the image is contained within the element
+                          marginLeft: '10px'
+                        }} 
+                      />
+                    </ListGroup.Item>
                   ))}
-                </Row>
+                </ListGroup>
               </Card.Text>
             </Card.Body>
           </Card>
@@ -63,7 +77,7 @@ function Dash({ username, userID, api }) {
           <Row>
             {followedTeams.map(team => (
               <Col md={6} key={team.teamID}>
-                <Team team={team} /> {/* Now Team.js will handle its own text color */}
+                <Team team={team} />
               </Col>
             ))}
           </Row>
