@@ -5,6 +5,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/esm/Row';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt, faFutbol } from '@fortawesome/free-solid-svg-icons';
 
 function Navigation({ username, userID, api }) {
 
@@ -21,9 +23,9 @@ function Navigation({ username, userID, api }) {
   };
 
   return (
-    <Row style = {{border: "1px solid black"}}>
-      <Navbar expand="sm" className="bg-body-tertiary">
-        <Navbar.Brand href="#"> Hello, {username}:{userID}</Navbar.Brand>
+    <Row>
+      <Navbar expand="sm" className="navbar-custom">
+        <Navbar.Brand href="#">Hello, {username}:{userID}</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -31,8 +33,12 @@ function Navigation({ username, userID, api }) {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Sports</Nav.Link>
-            <Nav.Link href="#action2" onClick={handleLogOut}>Logout</Nav.Link>
+            <Nav.Link href="#action1">
+              <FontAwesomeIcon icon={faFutbol} /> Sports
+            </Nav.Link>
+            <Nav.Link href="#action2" onClick={handleLogOut}>
+              <FontAwesomeIcon icon={faSignOutAlt} /> Logout
+            </Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Form.Control
@@ -46,9 +52,7 @@ function Navigation({ username, userID, api }) {
         </Navbar.Collapse>
       </Navbar>
     </Row>
-
   );
 };
 
 export default Navigation;
-
