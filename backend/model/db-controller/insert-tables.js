@@ -18,10 +18,23 @@ let db = new sqlite3.Database(db_path, (err) => {
   createTables(db)
   const playDir = "../backend/data-files/Players";
   const brandDir = "../backend/data-files/Teams/Brand.csv"
-  const teamDir = "../backend/data-files/Teams/Teams.csv";
-  processTeamBranding(brandDir)
+  // const teamDir = "../backend/data-files/Teams/Teams.csv";
+  // processTeamBranding(brandDir)
   traverseDirectory(playDir);
-  processTeamData(teamDir);
+  const alterTableQuery = `
+  ALTER TABLE PlayerStats
+  ADD COLUMN JERSEYNUMBER INT;
+`;
+
+  // Execute the query
+  db.run(alterTableQuery, (error, results) => {
+    if (error) {
+      console.error('Error adding column:', error);
+    } else {
+      console.log('Column JERSEYNUMBER added successfully');
+    }
+  });
+  // processTeamData(teamDir);
 });
 
 const processTeamData = async (filePath) => {
@@ -118,7 +131,7 @@ const processPlayerData = async (filePath) => {
   const players = await csv().fromFile(filePath);
   const insertPlayer =
     "Insert INTO Players (TeamID, PlayerID, FirstName, LastName) VALUES(?, ?, ?, ?)";
-    const insertPlayerStats = 
+  const insertPlayerStats =
     "INSERT INTO PlayerStats(TeamID, PlayerID, POS, PTS, REB, AST, BLKS, FG, LASTGAME_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
   const checkPlayerExists = "SELECT PlayerID FROM Players WHERE PlayerID = ?";
   const checkPlayerStatsExists = "SELECT PlayerID FROM Players WHERE PlayerID = ?";
@@ -179,13 +192,13 @@ const processPlayerData = async (filePath) => {
   });
 };
 
-const processTeamBranding = async(filePath) =>{
+const processTeamBranding = async (filePath) => {
   const branding = await csv().fromFile(filePath);
-  const insertBranding = 
-  "INSERT INTO TeamBranding (TeamID, Logo, PrimaryColor, SecondaryColor) VALUES(?,?,?,?)"
-  const checkBrandingExists = 
-  "SELECT TeamID FROM TeamBranding WHERE TeamID = ?";
-  branding.forEach((team =>{
+  const insertBranding =
+    "INSERT INTO TeamBranding (TeamID, Logo, PrimaryColor, SecondaryColor) VALUES(?,?,?,?)"
+  const checkBrandingExists =
+    "SELECT TeamID FROM TeamBranding WHERE TeamID = ?";
+  branding.forEach((team => {
     const teamID = team.id
     const logo = team.logo
     const primary = team.primary
@@ -203,13 +216,14 @@ const processTeamBranding = async(filePath) =>{
         );
       } else {
         // Inserting Branding
-        db.run(insertBranding, [teamID, logo, primary, secondary], (err) =>{
-          if(err){
+        db.run(insertBranding, [teamID, logo, primary, secondary], (err) => {
+          if (err) {
             console.log('Error inserting Team %s', teamID)
           }
           else {
             console.log('Team %s entered into TeamBranding', teamID)
-        }});
+          }
+        });
       }
     });
   }))
@@ -231,8 +245,29 @@ function traverseDirectory(directory) {
     } else {
       // If it's a file, check if it's a CSV file
       if (path.extname(itemPath) === ".csv") {
-          processPlayerData(itemPath)
+        updatePlayerStats(itemPath)
       }
     }
   });
+}
+
+
+
+const updatePlayerStats = async (filePath) => {
+  const updatePlayerStatsJersey = "UPDATE PlayerStats SET JERSEYNUMBER = ? WHERE PlayerID = ?";
+  const players = await csv().fromFile(filePath);
+  players.forEach((player) => {
+    const playerID = player.response.id;
+    const jerseyNumber = player.response.leagues.standard.jersey || "N/A"; // Assuming jerseyNumber is null if not provided
+
+    // Update player stats with jersey number
+    db.run(updatePlayerStatsJersey, [jerseyNumber, playerID], function (err) {
+      if (err) {
+        console.error("Error updating player stats with jersey number", err);
+      } else {
+        console.log("Player stats updated with jersey number: %s", jerseyNumber);
+      }
+    });
+  });
+
 }

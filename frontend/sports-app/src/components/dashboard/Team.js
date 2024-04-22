@@ -55,6 +55,7 @@ function Team({ team }) {
                                     padding: "10px 20px",
                                     borderTopLeftRadius: "6px",
                                     borderTopRightRadius: "6px",
+                                    textAlign: "center"
 
                                 }}>
                                     2023-24 Roster
@@ -64,7 +65,7 @@ function Team({ team }) {
                         {team.players.map(player => (
                             // Keep the player names' color black or any color that contrasts with their background
                             <ListGroup.Item key={player.playerID} style={{ color: '#000' }}>
-                                {player.firstName} {player.lastName}
+                                {player.firstName} {player.lastName} (#{player.jerNum}), {player.pos}
                             </ListGroup.Item>
                         ))}
                     </ListGroup>

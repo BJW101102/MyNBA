@@ -118,7 +118,7 @@ router.get('/allteams', async (req, res) => {
             console.error("Error selecting Teams");
             return res.status(500).json({ message: "Internal Server Error" });
         } else {
-            rows.forEach(row =>{
+            rows.forEach(row => {
                 let team = new TeamInfo(row.TeamID);
                 team.setPrimary(row.PrimaryColor);
                 team.setSecondary(row.SecondaryColor);
@@ -270,8 +270,12 @@ router.get("/followed-teams", async (req, res) => {
                                                                             reject(err);
                                                                         }
                                                                         if (row) {
-                                                                            const selectPlayers = "SELECT PlayerID, Firstname, Lastname FROM Players WHERE TeamID = ?";
-                                                                            req.db.all(selectPlayers, [teamID], (err, row) => {
+                                                                            const selectPlayers = `
+                                                                            SELECT *
+                                                                            FROM Players 
+                                                                            INNER JOIN PlayerStats ON Players.PlayerID = PlayerStats.PlayerID AND Players.TeamID = PlayerStats.TeamID
+                                                                            WHERE Players.TeamID = ?;
+                                                                          `; req.db.all(selectPlayers, [teamID], (err, row) => {
                                                                                 if (err) {
                                                                                     console.error("Error selecting Players");
                                                                                     reject(err);
@@ -281,6 +285,8 @@ router.get("/followed-teams", async (req, res) => {
                                                                                         var currentPlayer = new Players(teamID, player.PlayerID);
                                                                                         currentPlayer.setFirstName(player.Firstname);
                                                                                         currentPlayer.setLastName(player.Lastname);
+                                                                                        currentPlayer.setJerNum(player.JERSEYNUMBER);
+                                                                                        currentPlayer.setPos(player.POS);
                                                                                         playersList.push(currentPlayer);
                                                                                     });
                                                                                     team.setPlayers(playersList);
@@ -375,4 +381,10 @@ function Players(teamID, playerID) {
     this.setLastName = function (lastName) {
         this.lastName = lastName;
     };
-};
+    this.setPos = function (pos) {
+        this.pos = pos;
+    };
+    this.setJerNum = function (jerNum) {
+        this.jerNum = jerNum;
+    };
+}

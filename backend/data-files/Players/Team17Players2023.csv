@@ -1,5 +1,5 @@
 get,parameters.team,parameters.season,results,response.id,response.firstname,response.lastname,response.birth.date,response.birth.country,response.nba.start,response.nba.pro,response.height.feets,response.height.inches,response.height.meters,response.weight.pounds,response.weight.kilograms,response.college,response.affiliation,response.leagues.standard.jersey,response.leagues.standard.active,response.leagues.standard.pos,response.leagues.vegas.jersey,response.leagues.vegas.active,response.leagues.vegas.pos,response.leagues.sacramento.jersey,response.leagues.sacramento.active,response.leagues.sacramento.pos,response.leagues.utah.jersey,response.leagues.utah.active,response.leagues.utah.pos
-players/,17.0,2023.0,25.0,462,D'Angelo,Russell,1996-02-23,USA,2015,6,6.0,4.0,1.93,193.0,87.5,Ohio State,Ohio State/USA,,True,G,,,,,,,,,
+players/,17.0,2023.0,25.0,462,D'Angelo,Russell,1996-02-23,USA,2015,6,6.0,4.0,1.93,193.0,87.5,Ohio State,Ohio State/USA,1.0,True,G,,,,,,,,,
 ,,,,560,Christian,Wood,1995-09-27,USA,2015,5,6.0,9.0,2.06,214.0,97.1,UNLV,UNLV/USA,35.0,True,F,35.0,1.0,C,,,,,,
 ,,,,437,Taurean,Prince,1994-03-22,USA,2016,5,6.0,6.0,1.98,218.0,98.9,Baylor,Baylor/USA,12.0,True,F,,,,,,,,,
 ,,,,1036,Jarred,Vanderbilt,1999-04-03,USA,2018,3,6.0,9.0,2.06,214.0,97.1,Kentucky,Kentucky/USA,8.0,True,F,8.0,1.0,F,,,,,,
@@ -23,4 +23,4 @@ players/,17.0,2023.0,25.0,462,D'Angelo,Russell,1996-02-23,USA,2015,6,6.0,4.0,1.9
 ,,,,4041,Harry III,Giles,,,0,0,6.0,,,240.0,,Duke,,14.0,True,F,,,,,,,,,
 ,,,,126,Anthony,Davis,1993-03-11,USA,2012,9,6.0,10.0,2.08,253.0,114.8,Kentucky,Kentucky/USA,3.0,True,F-C,,,,,,,,,
 ,,,,142,Spencer,Dinwiddie,1993-04-06,USA,2014,7,6.0,6.0,1.98,215.0,97.5,Colorado,Colorado/USA,26.0,True,G,,,,,,,,,
-,,,,265,LeBron,James,1984-12-30,USA,2003,18,6.0,9.0,2.06,250.0,113.4,St. Vincent-St. Mary HS (OH),St. Vincent-St. Mary HS (OH)/USA,6.0,True,F,,,,,,,,,
+,,,,265,LeBron,James,1984-12-30,USA,2003,18,6.0,9.0,2.06,250.0,113.4,St. Vincent-St. Mary HS (OH),St. Vincent-St. Mary HS (OH)/USA,23.0,True,F,,,,,,,,,
