@@ -17,3 +17,4 @@ npm install react-bootstrap
 npm install @mui/material @emotion/react @emotion/styled
 npm install @fontsource/roboto
 npm install @mui/icons-material
+npm install --save @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons
