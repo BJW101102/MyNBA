@@ -61,11 +61,11 @@ function Team({ team }) {
                                     2023-24 Roster
                                 </Card.Title>
                                 <CardBody>
-                                    <ListGroup className="team-font-size" style={{ maxHeight: '15vh', overflowY: 'auto', maxWidth:'100%'}}>
+                                    <ListGroup className="team-font-size" style={{ maxHeight: '15vh', overflowY: 'auto'}}>
                         {team.players.map(player => (
                             // Keep the player names' color black or any color that contrasts with their background
                             <ListGroup.Item key={player.playerID} style={{ color: '#000' }}>
-                                {player.firstName} {player.lastName} (#{player.jerNum}), {player.pos}
+                                {player.firstName} {player.lastName} ({player.jerNum}), {player.pos}
                             </ListGroup.Item>
                         ))}
                     </ListGroup>

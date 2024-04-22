@@ -147,12 +147,24 @@ router.put("/follow/:id", async (req, res) => {
         // Creating user reference
         const user = req.session.user;
         const teamID = Number.parseInt(req.params.id);
+        const checkUserTeamExist = "SELECT userID FROM UserSports WHERE userID = ? AND teamID = ?";
         const insertUserTeam = "INSERT INTO UserSports (userID, teamID) VALUES (?, ?)";
-        req.db.run(insertUserTeam, [user.userID, teamID], function (err) {
+
+        req.db.get(checkUserTeamExist, [user.userID, teamID], function (err, row) {
             if (err) {
-                return res.status(500).json({ message: "Error following team" });
+                return res.status(500).json({ message: "Error checking UserSports" });
+            } else {
+                if (row) {
+                    return res.status(403).json({ message: "UserSports entry already exist" });
+                } else {
+                    req.db.run(insertUserTeam, [user.userID, teamID], function (err) {
+                        if (err) {
+                            return res.status(500).json({ message: "Error following team" });
+                        }
+                        return res.status(200).json({ teamID: req.params.id, userID: user.userID });
+                    });
+                }
             }
-            return res.status(200).json({ teamID: req.params.id, userID: user.userID });
         });
     } catch (error) {
         res.status(400).json({ message: error.message });

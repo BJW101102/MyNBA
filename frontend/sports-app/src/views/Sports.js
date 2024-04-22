@@ -32,30 +32,13 @@ function Sports() {
         fetchFollowedTeams();
     }, []);
 
-
-    // const [followedTeams, setFollowedTeams] = useState([]); // State to hold followed teams
-
-    // useEffect(() => {
-    //     const fetchFollowedTeams = async () => {
-    //         try {
-    //             const response = await axios.get('/api/followed-teams'); // Fetch followed teams
-    //             setFollowedTeams(response.data); // Update state with fetched teams
-    //         } catch (error) {
-    //             console.error('Error fetching followed teams:', error);
-    //         }
-    //     };
-
-    //     fetchFollowedTeams(); // Call the fetch function when the component mounts
-    // }, []); // Empty dependency array ensures the effect runs only once
-
-
     const splitTeamsIntoRows = () => {
         const rows = [];
         let currentRow = [];
         nbaTeams.forEach((team, index) => {
             currentRow.push(
                 <Col key={team.teamID}>
-                    <Sport team={team} />
+                    <Sport team={team} api ={api} />
                 </Col>
             );
             if ((index + 1) % 3 === 0 || index === team.length - 1) {
