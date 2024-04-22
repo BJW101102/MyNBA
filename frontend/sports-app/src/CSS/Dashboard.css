@@ -44,21 +44,52 @@
 
 .teams{
   background-color: #474C50;
-  /* background-color: greenyellow; */
 }
+
 .img-border{
   border: 1px solid black;
 }
+
 .scrollable{
    max-height: 150px;
-   
-    overflow:scroll;
-
+   overflow:scroll;
 }
+
 .team{
   border: 1px solid black;
   border-radius: 5px;
 }
+
 .team-font-size{
   font-size: .75rem;
+}
+
+/* Additional navbar styles */
+
+.navbar-custom {
+  padding: 0.8rem 1rem;
+  background-color: #fff; /* Or any other color that suits your theme */
+  color: #fff;
+}
+
+.navbar-custom .navbar-brand, .navbar-custom .nav-link {
+  color: #333;
+}
+
+.navbar-custom .nav-link:hover {
+  color: #ddd; /* Slightly lighter color on hover */
+}
+
+.navbar-custom .form-control {
+  margin-right: .5rem;
+}
+
+.navbar-custom .btn-outline-success {
+  border-color: #28a745;
+  color: #28a745;
+}
+
+.navbar-custom .btn-outline-success:hover {
+  background-color: #28a745;
+  color: #fff;
 }
