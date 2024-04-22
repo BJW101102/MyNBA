@@ -37,7 +37,7 @@ function Team({ team }) {
                     borderTopLeftRadius: "6px",
                     borderTopRightRadius: "6px"
                 }}>
-                 {team.name}
+                 {team.name} ({team.code})
                 </Card.Title>
                 <Card.Body className="d-flex flex-row" style={{ backgroundColor: "white", overflowX: "auto" }}>
                     <Row>
@@ -46,7 +46,7 @@ function Team({ team }) {
                             />
                         </Col>
                      
-                        <Col style={{width: "100vh"}}>
+                        <Col >
                             <Card className="team m-2 p-0">
                                 <Card.Title className="team-font-size" style={{
                                     backgroundColor: team.primary,
@@ -57,10 +57,10 @@ function Team({ team }) {
                                     borderTopRightRadius: "6px",
 
                                 }}>
-                                    {team.code}, Team Roster
+                                    2023-24 Roster
                                 </Card.Title>
                                 <CardBody>
-                                    <ListGroup className="team-font-size" style={{ maxHeight: '15vh', overflowY: 'auto'}}>
+                                    <ListGroup className="team-font-size" style={{ maxHeight: '15vh', overflowY: 'auto', maxWidth:'100%'}}>
                         {team.players.map(player => (
                             // Keep the player names' color black or any color that contrasts with their background
                             <ListGroup.Item key={player.playerID} style={{ color: '#000' }}>
