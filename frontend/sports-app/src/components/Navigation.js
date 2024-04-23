@@ -1,14 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/esm/Row';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt, faFutbol } from '@fortawesome/free-solid-svg-icons';
 
-function Navigation({ username, userID, api }) {
+function Navigation({ api }) {
+
+
+  const [user, setUser] = useState('');
+
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        // Sending GET request for user information
+        const response = await api.get('userdata');
+        setUser(response.data); //Setting the username to the response object's username
+      }
+      catch (error) {
+        console.error("Error fetching user data:", error)
+      }
+    };
+    fetchUserData();
+  }, []);
 
   const handleLogOut = async (event) => {
     try {
@@ -24,8 +41,8 @@ function Navigation({ username, userID, api }) {
 
   return (
     <Row>
-      <Navbar expand="sm" className="navbar-custom">
-        <Navbar.Brand href="#">Hello, {username}:{userID}</Navbar.Brand>
+      <Navbar expand="sm" className="navbar-custom" style={{height: "5vh"}}>
+        <Navbar.Brand href="#">Welcome to myNBA, {user.username}:{user.userID}</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -40,15 +57,6 @@ function Navigation({ username, userID, api }) {
               <FontAwesomeIcon icon={faSignOutAlt} /> Logout
             </Nav.Link>
           </Nav>
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            {/* <Button variant="outline-success">Search</Button> */}
-          </Form>
         </Navbar.Collapse>
       </Navbar>
     </Row>

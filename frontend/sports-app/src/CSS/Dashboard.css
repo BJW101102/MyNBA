@@ -42,9 +42,34 @@
   height: 500px;
 } */
 
-.teams{
-  background-color:#232628;
+.user-card-title{
+  color: white;
+  width: 100%;
+  padding: 10px 20px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  text-align: center;
+  cursor: pointer;
 }
+
+
+
+
+.followed-card{
+  font-weight: bold;
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mini-logo{
+  height: 20px;
+  width: auto; 
+  object-fit: contain; 
+  margin-left: 10px;
+}
+
+
 .img-border{
   border: 1px solid black;
 }
@@ -63,11 +88,17 @@
   font-size: .75rem;
 }
 
-/* Additional navbar styles */
+.user-info-container{
+  background-color: #E3E1E1;
+}
+
+.teams{
+  background-color:#404143;
+}
 
 .navbar-custom {
   padding: 0.8rem 1rem;
-  background-color:#D3D3D3; /* Or any other color that suits your theme */
+  background-color: #9E9D9D; /* Or any other color that suits your theme */
   color: #fff;
 }
 
@@ -92,3 +123,4 @@
   background-color: #28a745;
   color: #fff;
 }
+

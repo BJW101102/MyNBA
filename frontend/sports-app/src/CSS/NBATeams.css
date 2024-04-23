@@ -1,0 +1,20 @@
+.button{
+    background-color: black;
+    border:1px solid black;
+    float:right;
+}
+
+.sports-page-container{
+    background-color: #232628
+}
+
+.NBA-card-header{
+    color: white; 
+    width: 100%;
+    padding: 10px 20px; 
+    border-top-left-radius: 6px; 
+    border-top-right-radius: 6px; 
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);  /* Adjust the values as needed */
+
+}

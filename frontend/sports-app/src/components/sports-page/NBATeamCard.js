@@ -27,7 +27,8 @@ function Sport({ team, api }) {
     return (
         <Col className="mt-2">
             <Card className="team m-2 p-0 custom-card" style={{ margin: "0", padding: "0" }}  >
-                <Card.Title className="team-font-size" style={{ backgroundColor: `${team.primary}`, color: "white", width: "100%", padding: "10px 20px", borderTopLeftRadius: "6px", borderTopRightRadius: "6px", textAlign: "center" }}>
+                <Card.Title className="NBA-card-header"
+                    style={{backgroundColor: `${team.primary}`}}>
                     {team.code}, {team.name} ({team.conference})
                 </Card.Title>
                 {/* <Card.Subtitle>{team.conference}, {team.division} </Card.Subtitle> */}

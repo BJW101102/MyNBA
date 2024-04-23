@@ -1,18 +1,11 @@
 import React, { useState } from 'react';
 import '../CSS/Form.css';
-import axios from 'axios';
 import swal from 'sweetalert2';
 
-function AuthForm() {
+function AuthForm({api}) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isSignUp, setIsSignUp] = useState(false); // State to toggle between forms
-
-    const api = axios.create({
-        baseURL: 'http://localhost:5500/api/',
-        withCredentials: true,
-    });
-
     const handleUsername = (event) => setUsername(event.target.value);
     const handlePassword = (event) => setPassword(event.target.value);
 

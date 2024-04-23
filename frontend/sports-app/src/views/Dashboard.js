@@ -1,22 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import '../CSS/Dashboard.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navigation from '../components/dashboard/Navigation.js';
-import Dash from '../components/dashboard/Dash.js'; //frontend/sports-app/src/components/dashboard/Dash.js
+import Navigation from '../components/Navigation.js';
+import Dash from '../components/dashboard-page/Dash.js'; //frontend/sports-app/src/components/dashboard/Dash.js
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 
 
-function Dashboard() {
+function Dashboard({api}) {
 
     const [username, setUsername] = useState('');
     const [userID, setUserID] = useState('');
-
-
-    const api = axios.create({
-        baseURL: 'http://localhost:5500/api/',
-        withCredentials: true, // Needed for Sessions
-    });
 
     // Fetching for user information (username, userID, etc...)
     useEffect(() => {

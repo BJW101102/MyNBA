@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Team from './Team.js';
+import UserTeamCard from './UserTeamCard.js';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 import ListGroup from 'react-bootstrap/ListGroup';
+
 
 // Include the utility function to determine text color
 function isDark(color) {
@@ -35,7 +35,7 @@ function Dash({ username, userID, api }) {
 
   return (
     <div className="dash-container">
-      <Row style={{ background: "#E9E9E9"}}>
+      <Row className="user-info-container">
         <Col xs={2} md={2}>
           <Image fluid src="https://static.vecteezy.com/system/resources/previews/024/983/914/original/simple-user-default-icon-free-png.png" rounded className='mb-2 mt-2 img-border' />
           <Card>
@@ -44,27 +44,17 @@ function Dash({ username, userID, api }) {
               <Card.Text>
                 <ListGroup className="team-font-size" style={{ overflowY: 'auto' }}>
                   {followedTeams.map(team => (
-                    <ListGroup.Item 
+                    <ListGroup.Item className='followed-card'
                       key={team.teamID}
                       style={{
                         backgroundColor: `${team.secondary}`,
                         color: isDark(team.secondary) ? '#FFF' : '#000', // Change text color based on background
-                        fontWeight: "bold",
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between'
                       }}
                     >
                       <span>{team.code}, {team.division}</span>
-                      <img 
+                      <img className='mini-logo'
                         src={team.logo} 
                         alt={`${team.code} logo`}
-                        style={{
-                          height: '20px',
-                          width: 'auto', // Maintain aspect ratio
-                          objectFit: 'contain', // Ensure the image is contained within the element
-                          marginLeft: '10px'
-                        }} 
                       />
                     </ListGroup.Item>
                   ))}
@@ -77,7 +67,7 @@ function Dash({ username, userID, api }) {
           <Row>
             {followedTeams.map(team => (
               <Col md={6} key={team.teamID}>
-                <Team team={team} />
+                <UserTeamCard team={team} api={api} />
               </Col>
             ))}
           </Row>

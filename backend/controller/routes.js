@@ -136,64 +136,6 @@ router.get('/allteams', async (req, res) => {
     });
 });
 
-// Handles following a team
-router.put("/follow/:id", async (req, res) => {
-    try {
-        // Requesting Session
-        if (!req.session.user) {
-            return res.status(401).json({ message: "User not authenticated" });
-        }
-
-        // Creating user reference
-        const user = req.session.user;
-        const teamID = Number.parseInt(req.params.id);
-        const checkUserTeamExist = "SELECT userID FROM UserSports WHERE userID = ? AND teamID = ?";
-        const insertUserTeam = "INSERT INTO UserSports (userID, teamID) VALUES (?, ?)";
-
-        req.db.get(checkUserTeamExist, [user.userID, teamID], function (err, row) {
-            if (err) {
-                return res.status(500).json({ message: "Error checking UserSports" });
-            } else {
-                if (row) {
-                    return res.status(403).json({ message: "UserSports entry already exist" });
-                } else {
-                    req.db.run(insertUserTeam, [user.userID, teamID], function (err) {
-                        if (err) {
-                            return res.status(500).json({ message: "Error following team" });
-                        }
-                        return res.status(200).json({ teamID: req.params.id, userID: user.userID });
-                    });
-                }
-            }
-        });
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
-});
-
-// Handles unfollowing a team
-router.delete("/unfollow/:id", async (req, res) => {
-    try {
-        // Requesting Session
-        if (!req.session.user) {
-            return res.status(401).json({ message: "User not authenticated" });
-        }
-
-        // Creating user reference
-        const user = req.session.user;
-        const teamID = Number.parseInt(req.params.id);
-        const deleteUserTeam = "DELETE FROM UserSports WHERE userID = ? AND teamID = ?";
-        req.db.run(deleteUserTeam, [user.userID, teamID], function (err) {
-            if (err) {
-                return res.status(500).json({ message: "Error unfollowing team" });
-            }
-            return res.status(200).json({ teamID: req.params.id, userID: user.userID });
-        });
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
-});
-
 // Handles getting followed-teams
 router.get("/followed-teams", async (req, res) => {
     try {
@@ -343,6 +285,178 @@ router.get("/followed-teams", async (req, res) => {
     }
 });
 
+router.get("/team/:id", async (req, res) => {
+    const teamID = Number.parseInt(req.params.id);
+    const checkTeamExist = "SELECT TeamID FROM Teams WHERE TeamID = ?";
+    const checkTeamExistsOnPlayers = "SELECT teamID FROM Players WHERE teamID = ?";
+    const selectPlayers = ` SELECT * FROM Players INNER JOIN PlayerStats ON Players.PlayerID = PlayerStats.PlayerID AND Players.TeamID = PlayerStats.TeamID WHERE Players.TeamID = ?; `;
+    const selectGames = `SELECT * FROM Games WHERE HomeID = ? OR VisitorID = ? `;
+    console.log("Called");
+    try {
+        const row = await new Promise((resolve, reject) => {
+            req.db.get(checkTeamExist, [teamID], (err, row) => {
+                if (err) {
+                    reject(err);
+                }
+                resolve(row);
+            });
+        });
+
+        if (!row) {
+            return res.status(500).json({ message: "Team doesn't exist" });
+        }
+
+        let team = await selectTeam(teamID, req, res);
+
+        if (!team) {
+            return res.status(500).json({ message: "Error joining Teams" });
+        }
+
+        req.db.get(checkTeamExistsOnPlayers, [teamID], async (err, row) => {
+            if (err) {
+                return res.status(500).json({ message: "Error checking Players" });
+            }
+            if (!row) {
+                return res.status(500).json({ message: "Player doesn't exist" });
+            }
+
+            try {
+                const players = await new Promise((resolve, reject) => {
+                    req.db.all(selectPlayers, [teamID], (err, row) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            let playersList = [];
+                            row.forEach(player => {
+                                var currentPlayer = new Players(teamID, player.PlayerID);
+                                currentPlayer.setFirstName(player.Firstname);
+                                currentPlayer.setLastName(player.Lastname);
+                                currentPlayer.setJerNum(player.JERSEYNUMBER);
+                                currentPlayer.setPos(player.POS);
+                                currentPlayer.setPTS(player.PTS);
+                                currentPlayer.setBLKS(player.BLKS);
+                                currentPlayer.setAST(player.AST);
+                                currentPlayer.setREB(player.REB);
+                                currentPlayer.setFGP(player.FG);
+                                playersList.push(currentPlayer);
+                            });
+                            resolve(playersList);
+                        }
+                    });
+                });
+
+                team.setPlayers(players);
+
+                req.db.all(selectGames, [teamID, teamID], async (err, rows) => {
+                    if (err) {
+                        return res.status(500).json({ message: "Error Selecting Game" });
+                    }
+                    if (!rows || rows.length === 0) {
+                        return res.status(500).json({ message: "Team hasn't played this season" });
+                    }
+
+                    let teamGames = [];
+
+                    try {
+                        await Promise.all(rows.map(async row => {
+                            let game = new Games(row.GameID);
+                            // Set home team
+
+                            game.setHomeTeam(await selectTeam(row.HomeID, req, res));
+                            game.setVisitorTeam(await selectTeam(row.VisitorID, req, res));
+                            game.setHomeScore(row.HomeScore);
+                            game.setVisitorScore(row.VisitorScore);
+                            if (teamID === row.HomeID) { //Team is Home
+                                if (row.HomeScore > row.VisitorScore) {
+                                    game.isTeamWinner(true);
+                                } else {
+                                    game.isTeamWinner(false);
+                                }
+                            }
+                            else { // Team is Visitor
+                                if (row.VisitorScore > row.HomeScore) {
+                                    game.isTeamWinner(true);
+                                } else {
+                                    game.isTeamWinner(false);
+                                }
+                            }
+                            teamGames.push(game);
+                        }));
+                        return res.status(200).json({ games: teamGames, team: team});
+                    } catch (error) {
+                        return res.status(500).json({ message: "Error fetching games" });
+                    }
+                });
+
+            } catch (error) {
+                return res.status(500).json({ message: "Error fetching players" });
+            }
+        });
+    } catch (error) {
+        return res.status(500).json({ message: "Error checking Teams" });
+    }
+});
+
+
+// Handles following a team
+router.put("/follow/:id", async (req, res) => {
+    try {
+        // Requesting Session
+        if (!req.session.user) {
+            return res.status(401).json({ message: "User not authenticated" });
+        }
+
+        // Creating user reference
+        const user = req.session.user;
+        const teamID = Number.parseInt(req.params.id);
+        const checkUserTeamExist = "SELECT userID FROM UserSports WHERE userID = ? AND teamID = ?";
+        const insertUserTeam = "INSERT INTO UserSports (userID, teamID) VALUES (?, ?)";
+
+        req.db.get(checkUserTeamExist, [user.userID, teamID], function (err, row) {
+            if (err) {
+                return res.status(500).json({ message: "Error checking UserSports" });
+            } else {
+                if (row) {
+                    return res.status(403).json({ message: "UserSports entry already exist" });
+                } else {
+                    req.db.run(insertUserTeam, [user.userID, teamID], function (err) {
+                        if (err) {
+                            return res.status(500).json({ message: "Error following team" });
+                        }
+                        return res.status(200).json({ teamID: req.params.id, userID: user.userID });
+                    });
+                }
+            }
+        });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
+
+// Handles unfollowing a team
+router.delete("/unfollow/:id", async (req, res) => {
+    try {
+        // Requesting Session
+        if (!req.session.user) {
+            return res.status(401).json({ message: "User not authenticated" });
+        }
+
+        // Creating user reference
+        const user = req.session.user;
+        const teamID = Number.parseInt(req.params.id);
+        const deleteUserTeam = "DELETE FROM UserSports WHERE userID = ? AND teamID = ?";
+        req.db.run(deleteUserTeam, [user.userID, teamID], function (err) {
+            if (err) {
+                return res.status(500).json({ message: "Error unfollowing team" });
+            }
+            return res.status(200).json({ teamID: req.params.id, userID: user.userID });
+        });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
+
+
 // Handles updating updating game 
 router.patch("/update-team/:id", async (req, res) => {
     // Grab User in Session
@@ -353,50 +467,129 @@ router.patch("/update-team/:id", async (req, res) => {
     // Call updateGameStats 
 });
 
-function TeamInfo(teamID) {
-    this.teamID = teamID;
-    this.setTeamName = function (name) {
-        this.name = name;
-    };
-    this.setCode = function (code) {
-        this.code = code;
-    };
-    this.setConference = function (conference) {
-        this.conference = conference;
-    };
-    this.setDivision = function (division) {
-        this.division = division;
-    };
-    this.setLocation = function (location) {
-        this.location = location;
-    };
-    this.setLogo = function (logo) {
-        this.logo = logo;
-    };
-    this.setPrimary = function (primary) {
-        this.primary = primary;
-    };
-    this.setSecondary = function (secondary) {
-        this.secondary = secondary;
-    };
-    this.setPlayers = function (players) {
-        this.players = players;
-    };
+
+async function selectTeam(teamID, req, res) {
+    let team = new TeamInfo(teamID);
+    const joinByTeamID = `SELECT * FROM Teams INNER JOIN TeamStats ON Teams.TeamID = TeamStats.TeamID INNER JOIN TeamBranding ON Teams.TeamID = TeamBranding.TeamID WHERE Teams.TeamID = ?; `;
+    try {
+        const row = await new Promise((resolve, reject) => {
+            req.db.get(joinByTeamID, [teamID], function (err, row) {
+                if (err) {
+                    console.log(err);
+                    reject(err);
+                }
+                resolve(row);
+            });
+        });
+
+        if (row) {
+            team.setTeamName(row.Teamname);
+            team.setCode(row.Code);
+            team.setConference(row.Conference);
+            team.setLocation(row.Location);
+            team.setPrimary(row.PrimaryColor);
+            team.setSecondary(row.SecondaryColor);
+            team.setDivision(row.Division);
+            team.setLogo(row.Logo);
+
+        } else {
+            return res.status(500).json({ message: "Team doesn't exist" });
+        }
+        return team;
+    } catch (error) {
+        return res.status(500).json({ message: "Error joining Teams" });
+    }
+}
+
+
+class TeamInfo {
+    constructor(teamID) {
+        this.teamID = teamID;
+        this.setTeamName = function (name) {
+            this.name = name;
+        };
+        this.setCode = function (code) {
+            this.code = code;
+        };
+        this.setConference = function (conference) {
+            this.conference = conference;
+        };
+        this.setDivision = function (division) {
+            this.division = division;
+        };
+        this.setLocation = function (location) {
+            this.location = location;
+        };
+        this.setLogo = function (logo) {
+            this.logo = logo;
+        };
+        this.setPrimary = function (primary) {
+            this.primary = primary;
+        };
+        this.setSecondary = function (secondary) {
+            this.secondary = secondary;
+        };
+        this.setPlayers = function (players) {
+            this.players = players;
+        };
+    }
 };
 
-function Players(teamID, playerID) {
-    this.teamID = teamID;
-    this.playerID = playerID;
-    this.setFirstName = function (firstName) {
-        this.firstName = firstName;
-    };
-    this.setLastName = function (lastName) {
-        this.lastName = lastName;
-    };
-    this.setPos = function (pos) {
-        this.pos = pos;
-    };
-    this.setJerNum = function (jerNum) {
-        this.jerNum = jerNum;
-    };
+class Players {
+    constructor(teamID, playerID) {
+        this.teamID = teamID;
+        this.playerID = playerID;
+        this.setFirstName = function (firstName) {
+            this.firstName = firstName;
+        };
+        this.setLastName = function (lastName) {
+            this.lastName = lastName;
+        };
+        this.setPos = function (pos) {
+            this.pos = pos;
+        };
+        this.setJerNum = function (jerNum) {
+            this.jerNum = jerNum;
+        };
+        this.pts = function (pts){
+            this.pts = pts;
+        };
+        this.setREB = function (reb){
+            this.reb = reb;
+        };
+        this.setPTS = function (pts){
+            this.pts = pts;
+        };
+        this.setAST = function (ast){
+            this.ast = ast;
+        };
+        this.setBLKS = function (blks){
+            this.blks = blks;
+        };
+        this.setFGP = function (fgp){
+            this.fgp = fgp;
+        };
+    }
+}
+
+class Games {
+    constructor(gameID) {
+        this.gameID = gameID;
+        this.setHomeTeam = function (team) {
+            this.homeTeam = team;
+        };
+        this.setHomeScore = function (score) {
+            this.homeScore = score;
+        };
+
+        this.setVisitorTeam = function (team) {
+            this.visitorTeam = team;
+        };
+        this.setVisitorScore = function (score) {
+            this.visitorScore = score;
+        };
+        this.isTeamWinner = function (result) {
+            this.isTeamWinner = result;
+        };
+    }
 }
