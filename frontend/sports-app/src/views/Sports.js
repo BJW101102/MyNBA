@@ -54,7 +54,7 @@ function Sports() {
     };
 
     return (
-        <Container fluid style={{ backgroundColor: '#474C50' }}>
+        <Container fluid style={{ backgroundColor: '#232628' }}>
             <header>
                 <Navigation />
             </header>

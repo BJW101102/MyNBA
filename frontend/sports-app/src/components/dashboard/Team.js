@@ -28,14 +28,15 @@ function Team({ team }) {
 
     return (
         <div>
-            <Card className="team m-2 p-0 custom-card" style={{ margin: "0", padding: "0" }}>
+            <Card className="team m-2 p-0 custom-card" style={{ margin: "0", padding: "0"}}>
                 <Card.Title className="team-font-size" style={{
                     backgroundColor: team.secondary,
                     color: textColor, // Only apply the dynamic text color to the title
                     width: "100%",
                     padding: "10px 20px",
                     borderTopLeftRadius: "6px",
-                    borderTopRightRadius: "6px"
+                    borderTopRightRadius: "6px",
+                    textAlign: "center"
                 }}>
                  {team.name} ({team.code})
                 </Card.Title>
@@ -75,9 +76,6 @@ function Team({ team }) {
                         </Col>
 
                     </Row>
-
-
-
                 </Card.Body>
             </Card>
         </div>

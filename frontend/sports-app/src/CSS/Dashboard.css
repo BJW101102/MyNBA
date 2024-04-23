@@ -43,9 +43,8 @@
 } */
 
 .teams{
-  background-color: #474C50;
+  background-color:#232628;
 }
-
 .img-border{
   border: 1px solid black;
 }
@@ -68,7 +67,7 @@
 
 .navbar-custom {
   padding: 0.8rem 1rem;
-  background-color: #fff; /* Or any other color that suits your theme */
+  background-color:#D3D3D3; /* Or any other color that suits your theme */
   color: #fff;
 }
 

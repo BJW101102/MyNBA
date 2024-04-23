@@ -35,12 +35,12 @@ function Dash({ username, userID, api }) {
 
   return (
     <div className="dash-container">
-      <Row style={{ background: "#e3e1e1" }}>
+      <Row style={{ background: "#E9E9E9"}}>
         <Col xs={2} md={2}>
           <Image fluid src="https://static.vecteezy.com/system/resources/previews/024/983/914/original/simple-user-default-icon-free-png.png" rounded className='mb-2 mt-2 img-border' />
           <Card>
             <Card.Body>
-              <Card.Title style={{ color: isDark("#e3e1e1") ? '#FFF' : '#000' }}>Followed Teams</Card.Title>
+              <Card.Title style={{color: "black" }}>Followed Teams</Card.Title>
               <Card.Text>
                 <ListGroup className="team-font-size" style={{ overflowY: 'auto' }}>
                   {followedTeams.map(team => (
@@ -73,7 +73,7 @@ function Dash({ username, userID, api }) {
             </Card.Body>
           </Card>
         </Col>
-        <Col xs={9} md={10} className='teams' style={{border: "1px solid black"}}>
+        <Col xs={9} md={10} className='teams'>
           <Row>
             {followedTeams.map(team => (
               <Col md={6} key={team.teamID}>

@@ -38,7 +38,7 @@ function Dashboard() {
     }, []);
 
     return (
-        <Container fluid style={{border: "2px solid black"}}> {/* This container is the screen container, there should only be one per page*/}
+        <Container fluid > {/* This container is the screen container, there should only be one per page*/}
             <div className="App">
                 <header >
                     <Navigation username={username} userID={userID} api={api} ></Navigation>
