@@ -25,7 +25,7 @@ function AuthForm({api}) {
     };
 
     return (
-        <div className={`container ${isSignUp ? 'right-panel-active' : ''}`} id="container">
+        <div className={`container ${isSignUp ? 'right-panel-active' : ''}`} id="container" style={{marginTop: "20vh"}}>
             <div className="form-container sign-up-container">
                 <form onSubmit={handleSubmit}>
                     <h1>Create Account</h1>

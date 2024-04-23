@@ -35,7 +35,7 @@ function Dash({ username, userID, api }) {
 
   return (
     <div className="dash-container">
-      <Row className="user-info-container">
+      <Row className="user-info-container" style={{minHeight: "95vh"}}>
         <Col xs={2} md={2}>
           <Image fluid src="https://static.vecteezy.com/system/resources/previews/024/983/914/original/simple-user-default-icon-free-png.png" rounded className='mb-2 mt-2 img-border' />
           <Card>

@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/esm/Row';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOutAlt, faFutbol } from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt, faFutbol, faSignInAlt, faBasketball, fa0, faDashboard } from '@fortawesome/free-solid-svg-icons';
 
 function Navigation({ api }) {
 
@@ -39,9 +39,16 @@ function Navigation({ api }) {
     }
   };
 
+  const handleRedirectDash = () =>{
+    window.location.href = 'http://localhost:3000/dashboard';
+  }
+  const handleRedirectSport = () =>{
+    window.location.href = 'http://localhost:3000/sports';
+  }
+
   return (
     <Row>
-      <Navbar expand="sm" className="navbar-custom" style={{height: "5vh"}}>
+      <Navbar expand="sm" className="navbar-custom" style={{ height: "5vh" }}>
         <Navbar.Brand href="#">Welcome to myNBA, {user.username}:{user.userID}</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -50,10 +57,13 @@ function Navigation({ api }) {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">
-              <FontAwesomeIcon icon={faFutbol} /> Sports
+            <Nav.Link href="#action1" onClick={handleRedirectDash}>
+              <FontAwesomeIcon icon={faDashboard} /> Dashboard
             </Nav.Link>
-            <Nav.Link href="#action2" onClick={handleLogOut}>
+            <Nav.Link href="#action2" onClick={handleRedirectSport}>
+              <FontAwesomeIcon icon={faBasketball} /> NBA Teams
+            </Nav.Link>
+            <Nav.Link href="#action3" onClick={handleLogOut}>
               <FontAwesomeIcon icon={faSignOutAlt} /> Logout
             </Nav.Link>
           </Nav>
