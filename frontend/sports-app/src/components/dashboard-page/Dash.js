@@ -31,6 +31,7 @@ function Dash({ username, userID, api }) {
     };
 
     fetchFollowedTeams();
+     // eslint-disable-next-line
   }, [userID]);
 
   return (

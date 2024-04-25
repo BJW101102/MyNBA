@@ -57,5 +57,5 @@ app.use('/api', routes);
 
 // Basic SQL Queries
 const { selectAllFromTable, deleteAllFromTable, deleteTable, createTable } = require('./controller/queries.js');
-selectAllFromTable(db, "UserInfo")
+// selectAllFromTable(db, "UserInfo");
 

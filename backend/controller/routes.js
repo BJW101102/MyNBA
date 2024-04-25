@@ -64,7 +64,7 @@ router.post('/login', async (req, res) => {
                 password: row.password,
                 userID: row.userID
             };
-            console.log(`User ${username} has been logged in`);
+            console.log(`Login: ${username}, ${req.session.user.userID} [>]`);
             res.status(200).json({ message: 'Login successful', user: { id: row.id, username: row.username } });
         })
     }
@@ -75,7 +75,6 @@ router.post('/login', async (req, res) => {
 
 // Handles logging out
 router.post('/logout', async (req, res) => {
-    console.log("Called")
     req.session.destroy((err) => {
         if (err) {
             console.log("Error destroying session:", err);
@@ -96,7 +95,7 @@ router.get('/userdata', async (req, res) => {
 
         // Creating user reference
         user = req.session.user;
-        console.log(`Fetched user ${user.username} with ID ${user.userID}`);
+        // console.log(`Fetch: ${user.username}, ${user.userID}`);
         return res.status(200).json({ username: user.username, userID: user.userID });
     }
     catch (error) {
@@ -129,7 +128,6 @@ router.get('/allteams', async (req, res) => {
                 team.setDivision(row.Division);
                 team.setCode(row.Code);
                 allTeams.push(team);
-                console.log(row)
             })
         }
         return res.status(200).json(allTeams);
@@ -161,7 +159,6 @@ router.get("/followed-teams", async (req, res) => {
             const promises = rows.map(row => {
                 return new Promise((resolve, reject) => {
                     let teamID = row.TeamID;
-                    console.log(teamID);
                     let team = new TeamInfo(teamID);
 
                     // Checking for TeamID -> Teams
@@ -291,7 +288,6 @@ router.get("/team/:id", async (req, res) => {
     const checkTeamExistsOnPlayers = "SELECT teamID FROM Players WHERE teamID = ?";
     const selectPlayers = ` SELECT * FROM Players INNER JOIN PlayerStats ON Players.PlayerID = PlayerStats.PlayerID AND Players.TeamID = PlayerStats.TeamID WHERE Players.TeamID = ?; `;
     const selectGames = `SELECT * FROM Games WHERE HomeID = ? OR VisitorID = ? `;
-    console.log("Called");
     try {
         const row = await new Promise((resolve, reject) => {
             req.db.get(checkTeamExist, [teamID], (err, row) => {
@@ -423,6 +419,7 @@ router.put("/follow/:id", async (req, res) => {
                         if (err) {
                             return res.status(500).json({ message: "Error following team" });
                         }
+                        console.log(`Follow: (${user.username}, ${user.userID}) -> ${teamID} [$]`)
                         return res.status(200).json({ teamID: req.params.id, userID: user.userID });
                     });
                 }
@@ -449,6 +446,7 @@ router.delete("/unfollow/:id", async (req, res) => {
             if (err) {
                 return res.status(500).json({ message: "Error unfollowing team" });
             }
+            console.log(`Unfollow: (${user.username}, ${user.userID}) -> ${teamID} [!]`)
             return res.status(200).json({ teamID: req.params.id, userID: user.userID });
         });
     } catch (error) {
@@ -499,8 +497,7 @@ async function selectTeam(teamID, req, res) {
     } catch (error) {
         return res.status(500).json({ message: "Error joining Teams" });
     }
-}
-
+};
 
 class TeamInfo {
     constructor(teamID) {
@@ -570,7 +567,7 @@ class Players {
             this.fgp = fgp;
         };
     }
-}
+};
 
 class Games {
     constructor(gameID) {
@@ -592,4 +589,4 @@ class Games {
             this.isTeamWinner = result;
         };
     }
-}
+};

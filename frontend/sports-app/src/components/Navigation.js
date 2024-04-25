@@ -49,7 +49,7 @@ function Navigation({ api }) {
   return (
     <Row>
       <Navbar expand="sm" className="navbar-custom" style={{ height: "5vh" }}>
-        <Navbar.Brand href="#">Welcome to myNBA, {user.username}:{user.userID}</Navbar.Brand>
+        <Navbar.Brand href="#">Welcome to MyNBA, {user.username}!</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
