@@ -15,24 +15,41 @@ function SingleTeam({ teamData, api }) {
     const [team, setTeam] = useState({});
     const [games, setGames] = useState({});
     const [loading, setLoading] = useState(true); // State to track loading status
+    const [stats, setStats] = useState([]);
+    const [refresh, setRefresh] = useState(false);
 
     useEffect(() => {
         const fetchTeamInfo = async () => {
+            setLoading(true);
             try {
                 const response = await api.get(`team/${teamID}`);
                 const teamInfo = response.data.team;
+                console.log(teamInfo);
                 setTeam(teamInfo);
+                setStats(teamInfo.players);
                 setGames(response.data.games);
-                setLoading(false); // Set loading to false when data is loaded
-                console.log(response.data.team);
             } catch (error) {
                 console.error('Error fetching followed teams:', error);
+            } finally {
+                setLoading(false);
+                setRefresh(false);
             }
-            console.log("TEAM STUFF: ", teamID)
         };
 
         fetchTeamInfo();
-    }, []);
+    }, [teamID, refresh]); 
+
+    const handleUpdateGame = async (teamID) => {
+        console.log(teamID);
+        try {
+            const response = await api.put(`/update-team/${teamID}`);
+            console.log("Game updated succesfully: ", response.data);
+
+            setRefresh(true); // Refresh the state
+        } catch (error) {
+            console.error("Error updating game: ", error);
+        }
+    }
 
     return (
         <Container fluid>
@@ -68,10 +85,29 @@ function SingleTeam({ teamData, api }) {
                                     </div>
                                 </Card.Body>
                             </Card>
-
+                            <button 
+                                onClick={() => handleUpdateGame(team.teamID)}
+                                style={{
+                                    backgroundColor: team.primary, 
+                                    color: 'white', 
+                                    padding: '5px 20px',
+                                    margin: '10px 0px', 
+                                    borderRadius: '5px',
+                                    border: 'none',
+                                    cursor: 'pointer',
+                                    transition: 'background-color 0.3s ease', 
+                                    
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.target.style.backgroundColor = team.secondary;
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.target.style.backgroundColor = team.primary;
+                                }}                
+                            >Update Latest Game Stats</button>
                         </Col>
                     </Row>
-
+                                  
                     {loading ? ( // Render loading indicator while data is loading
                         <div>Loading...</div>
                     ) : (
@@ -86,14 +122,14 @@ function SingleTeam({ teamData, api }) {
                                     </Card.Title>
                                     <Card.Body>
                                         <ListGroup className="team-font-size" style={{ maxHeight: '70vh', overflowY: 'auto' }}>
-                                            {team.players.map(player => (
+                                            {stats.map(player => (
                                                 <ListGroup.Item key={player.playerID} style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                     <div style={{ fontSize: "2vh" }}>
                                                         {player.firstName} {player.lastName} (#{player.jerNum})
                                                     </div>
                                                     <div style={{ textAlign: 'center' }}>
                                                         <span style={{ fontSize: "2vh" }}>PTS: {player.pts}, REB: {player.reb}, AST: {player.ast}, BLK: {player.blks}, FGP: {player.fgp}%</span>
-                                                    </div>
+                                                        </div>
                                                 </ListGroup.Item>
                                             ))}
                                         </ListGroup>
@@ -111,6 +147,7 @@ function SingleTeam({ teamData, api }) {
                                     <Card.Body>
                                         <ListGroup className="team-font-size" style={{ maxHeight: '70vh', overflowY: 'auto' }}>
                                             {games.map(game => (
+                                                game.homeScore && game.visitorScore && (
                                                 <ListGroup.Item key={game.id} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                                     <div className="game-container" style={{ fontSize: "2vh" }} >
                                                         {game.homeTeam.code}
@@ -122,7 +159,8 @@ function SingleTeam({ teamData, api }) {
                                                         <span style={{ margin: '0 5px', color: game.isTeamWinner ? 'green' : 'red' }}>{game.isTeamWinner ? 'W' : 'L'}</span> {/* Green for winner, red for loser */}
                                                     </div>
                                                 </ListGroup.Item>
-                                            ))}
+                                                )
+                                            ))} 
                                         </ListGroup>
                                     </Card.Body>
                                 </Card>
@@ -133,5 +171,6 @@ function SingleTeam({ teamData, api }) {
             </div>
         </Container >
     );
-};
+}
+
 export default SingleTeam;

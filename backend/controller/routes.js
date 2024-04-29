@@ -1,7 +1,9 @@
+const { updateGameStats } = require('../model/db-controller/insert-api.js');
+
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-
+  
 module.exports = router;
 
 // Handles new user registration  
@@ -458,13 +460,21 @@ router.delete("/unfollow/:id", async (req, res) => {
 
 
 // Handles updating updating game 
-router.patch("/update-team/:id", async (req, res) => {
-    // Grab User in Session
-    if (!req.session.user) {
-        return res.status(401).json({ message: "User not authenticated" });
+router.put("/update-team/:id", async (req, res) => {
+    try {
+        const teamID = Number.parseInt(req.params.id);
+        if(isNaN(teamID)) {
+            return res.status(400).json({ message: 'Invalid TeamID' })
+        }
+
+        const season = "2023";
+        await updateGameStats(teamID, season);
+
+        return res.status(200).json({ message: "Success" }); 
+    } catch (error) {
+        res.status(400).json({messgae: error.message});
     }
-    return res.status(200).json({ message: "Success" });
-    // Call updateGameStats 
+
 });
 
 
@@ -593,3 +603,35 @@ class Games {
         };
     }
 }
+
+
+/* ===== UPDATE ===== */
+//Updates username
+router.patch('/change-username', async (req, res) => {
+    try {
+        //Requesting session
+        if (!req.session.user) {
+            return res.status(401).json({ message: 'User not authenticated' });
+        }
+
+        const user = req.session.user.userID;
+        const newUsername = req.body.newUsername;
+
+        //Updating database
+        const db = req.db;
+        const updateUsernameQuery = `UPDATE UserInfo SET username = ? WHERE userID = ?`;
+        db.run(updateUsernameQuery, [newUsername, user], function (err) {
+            if (err) {
+                console.error("Error updating username:", err.message);
+                return res.status(500).json({ message: 'Error updating username' });
+            }
+            console.log(`Username updated successfully for user ${username}`);
+            return res.status(200).json({ message: 'Username updated successfully' });
+        });
+    }
+    catch (error) {
+        console.error('Error updating username:', error);
+        return res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
+

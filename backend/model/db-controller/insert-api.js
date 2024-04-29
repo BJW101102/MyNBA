@@ -12,7 +12,6 @@ let db = new sqlite3.Database(db_path, (err) => {
     return;
   }
   console.log("Connected to the SQLite database.");
-  updateGameStats(41, season);
 });
 //END: TESTING DB: DONT COPY
 
@@ -141,10 +140,10 @@ async function updateGameStats(teamID, season) {
         });
       });
       updatePlayerStats(teamID, season);
-    }
+  } 
   } catch (error) {
     console.error('Error', error);
   }
-
 }
 
+module.exports = { updateGameStats };
