@@ -405,6 +405,7 @@ router.put("/follow/:id", async (req, res) => {
     try {
         // Requesting Session
         if (!req.session.user) {
+            console.log(req.session.user);
             return res.status(401).json({ message: "User not authenticated" });
         }
 
@@ -609,13 +610,16 @@ class Games {
 //Updates username
 router.patch('/change-username', async (req, res) => {
     try {
+        console.log(req.session.user);
         //Requesting session
         if (!req.session.user) {
             return res.status(401).json({ message: 'User not authenticated' });
         }
 
         const user = req.session.user.userID;
-        const newUsername = req.body.newUsername;
+        const newUsername = req.body.username;
+
+        console.log("Route userID: " + user + ", and newUsername: " + newUsername);
 
         //Updating database
         const db = req.db;
@@ -625,7 +629,7 @@ router.patch('/change-username', async (req, res) => {
                 console.error("Error updating username:", err.message);
                 return res.status(500).json({ message: 'Error updating username' });
             }
-            console.log(`Username updated successfully for user ${username}`);
+            console.log(`Username updated successfully for user ${user}`);
             return res.status(200).json({ message: 'Username updated successfully' });
         });
     }
