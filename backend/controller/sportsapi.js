@@ -8,7 +8,7 @@ const options = {
     season: '2019-2020'
   },
   headers: {
-    'X-RapidAPI-Key': 'b2a90f6514msh27c59dfd5ded947p1f4eb9jsnf4de5e98eb53',
+    'X-RapidAPI-Key': 'XXXXXX',
     'X-RapidAPI-Host': 'api-basketball.p.rapidapi.com'
   }
 };
