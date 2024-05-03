@@ -1,1 +1,2 @@
-# Sports-Application
+# MyNBA
+The proposed sports application serves as a dynamic platform for sports enthusiasts to follow their favorite sports, teams, and players comprehensively. It offers a versatile database that categorizes various sports and their respective teams along with detailed profiles of each team’s players. Inspired by the social platform FOTMOB, this application extends beyond just tracking; it enables NBA fans to stay connected with their favorite teams and players across multiple games and conferences. By facilitating easy access to team statistics and updates, the application aims to be an essential resource for fans who wish to engage and follow the performance and stats of the teams they care about.
