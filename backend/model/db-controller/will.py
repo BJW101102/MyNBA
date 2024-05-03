@@ -27,7 +27,7 @@ def get_games_by_team(team_id, season):
     url = "https://api-nba-v1.p.rapidapi.com/games"
     querystring = {"team": str(team_id), "season": str(season)}
     headers = {
-        "X-RapidAPI-Key": "49fd3143cfmshec3bdbb4c25a433p1753c9jsnf71b1dbb7945",
+        "X-RapidAPI-Key": "XXXXXX",
         "X-RapidAPI-Host": "api-nba-v1.p.rapidapi.com"
     }
 
