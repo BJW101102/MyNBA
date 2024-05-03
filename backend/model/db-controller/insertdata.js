@@ -79,7 +79,7 @@ function getPlayerStatsByTeam(team_id, season, ) {
   const querystring = new URLSearchParams({ team: team_id, season: season });
 
   const headers = {
-    "X-RapidAPI-Key": "b2a90f6514msh27c59dfd5ded947p1f4eb9jsnf4de5e98eb53",
+    "X-RapidAPI-Key": "XXXXXX",
     "X-RapidAPI-Host": "api-nba-v1.p.rapidapi.com"
   };
 
@@ -99,7 +99,7 @@ function getGameStatsByTeam(team_id, season, ) {
   const querystring = new URLSearchParams({ team: team_id, season: season });
 
   const headers = {
-    "X-RapidAPI-Key": "b2a90f6514msh27c59dfd5ded947p1f4eb9jsnf4de5e98eb53",
+    "X-RapidAPI-Key": "XXXXXX",
     "X-RapidAPI-Host": "api-nba-v1.p.rapidapi.com"
   };
 
